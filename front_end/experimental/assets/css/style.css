@@ -80,16 +80,51 @@ body {
 }
 
 .chat__content__stranger {
-    margin-top: 20px;
-    display: inline-block;
-    width: 200px;
-    margin-left: 2em;
-    background-color: red;
+    float: left;
+    margin-left: 20px;
 }
 
 .chat__content__me {
-    background-color: green;
+    float: right;
+    margin-right: 20px;
+}
+
+.chat__content__stranger__container {
     margin-top: 20px;
     display: inline-block;
-    width: 200px;
+    width: 150px;
+    background-color: rgb(228, 141, 141);
+    border-radius: 5%;
+    padding-right: 1em;
+    padding-left: 1em;
 }
+
+.chat__content__me__container {
+    background-color: rgb(115, 194, 247);
+    margin-top: 20px;
+    display: inline-block;
+    width: 150px;
+    border-radius: 5%;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+/* width */
+.chat__content::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .chat__content::-webkit-scrollbar-track {
+    background: rgb(51, 49, 46);; 
+  }
+   
+  /* Handle */
+  .chat__content::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  .chat__content::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
