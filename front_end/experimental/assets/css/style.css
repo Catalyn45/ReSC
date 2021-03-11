@@ -25,8 +25,8 @@ body {
 
 .chat__menubar {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: flex-end;
     background-color: rgba(240, 107, 74);
 }
 
@@ -75,6 +75,7 @@ body {
 }
 
 .chat__content {
+    background-color: inherit;
     overflow-y: scroll;
     height: 370px;
 }
@@ -109,22 +110,18 @@ body {
     padding-left: 1em;
 }
 
-/* width */
 .chat__content::-webkit-scrollbar {
     width: 10px;
   }
   
-  /* Track */
   .chat__content::-webkit-scrollbar-track {
     background: rgb(51, 49, 46);; 
   }
    
-  /* Handle */
   .chat__content::-webkit-scrollbar-thumb {
     background: #888; 
   }
-  
-  /* Handle on hover */
+
   .chat__content::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
