@@ -3,14 +3,13 @@ body {
     margin: 0;
 }
 
-.content {
-    height: 300em;
-}
-
 .content p {
     font-size: 4em;
 }
 
+/*
+Chat
+*/
 .chat {
     width: 20em;
     height: 30em;
@@ -23,10 +22,13 @@ body {
     margin-bottom: 1em;
 }
 
+/*
+Chat menu
+*/
 .chat__menubar {
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: flex-end;
     background-color: rgba(240, 107, 74);
 }
 
@@ -46,6 +48,51 @@ body {
     margin: 0;
 }
 
+/*
+Chat content
+*/
+.chat__content {
+    background-color: inherit;
+    overflow-y: scroll;
+    height: 370px;
+}
+
+.chat__content__stranger {
+    margin-top: 20px;
+    float: left;
+    margin-left: 20px;
+}
+
+.chat__content__me {
+    margin-top: 20px;
+    float: right;
+    margin-right: 20px;
+}
+
+.chat__content__stranger__container {
+    display: inline-block;
+    width: 150px;
+    background-color: rgb(228, 141, 141);
+    border-radius: 5%;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+
+.chat__content__me__container {
+    background-color: rgb(115, 194, 247);
+    display: inline-block;
+    width: 150px;
+    border-radius: 5%;
+    padding-right: 1em;
+    padding-left: 1em;
+    overflow-wrap: break-word;
+}
+
+
+/*
+Input bar from bellow
+*/
 .chat__inputbar {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -74,59 +121,21 @@ body {
     width: 3.5em;
 }
 
-.chat__content {
-    overflow-y: scroll;
-    height: 370px;
-}
-
-.chat__content__stranger {
-    float: left;
-    margin-left: 20px;
-}
-
-.chat__content__me {
-    float: right;
-    margin-right: 20px;
-}
-
-.chat__content__stranger__container {
-    margin-top: 20px;
-    display: inline-block;
-    width: 150px;
-    background-color: rgb(228, 141, 141);
-    border-radius: 5%;
-    padding-right: 1em;
-    padding-left: 1em;
-}
-
-
-.chat__content__me__container {
-    background-color: rgb(115, 194, 247);
-    margin-top: 20px;
-    display: inline-block;
-    width: 150px;
-    border-radius: 5%;
-    padding-right: 1em;
-    padding-left: 1em;
-    overflow-wrap: break-word;
-}
-
-/* width */
+/*
+    Scroll atributes
+*/
 .chat__content::-webkit-scrollbar {
     width: 10px;
   }
   
-  /* Track */
   .chat__content::-webkit-scrollbar-track {
     background: rgb(51, 49, 46);; 
   }
    
-  /* Handle */
   .chat__content::-webkit-scrollbar-thumb {
     background: #888; 
   }
-  
-  /* Handle on hover */
+
   .chat__content::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
