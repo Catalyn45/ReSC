@@ -78,6 +78,7 @@ Chat content
     padding-left: 1em;
 }
 
+
 .chat__content__me__container {
     background-color: rgb(115, 194, 247);
     display: inline-block;
@@ -85,6 +86,7 @@ Chat content
     border-radius: 5%;
     padding-right: 1em;
     padding-left: 1em;
+    overflow-wrap: break-word;
 }
 
 
