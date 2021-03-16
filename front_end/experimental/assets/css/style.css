@@ -99,6 +99,7 @@ body {
     padding-left: 1em;
 }
 
+
 .chat__content__me__container {
     background-color: rgb(115, 194, 247);
     margin-top: 20px;
@@ -107,6 +108,7 @@ body {
     border-radius: 5%;
     padding-right: 1em;
     padding-left: 1em;
+    overflow-wrap: break-word;
 }
 
 /* width */

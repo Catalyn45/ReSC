@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="chat__content">
+        <div class="chat__content" id="chat_cont">
             <div class="chat__content__stranger">
                 <div class = "chat__content__stranger__container">
                     <p>Buna ziua, numele meu este Diana. cu ce va pot ajuta?</p>
@@ -69,9 +69,9 @@
         </div>
 
         <div class = "chat__inputbar">
-            <form action="ceva.php" method="POST">
+            <form onsubmit="return sendMsg()">
                 <input type="text" name="message" id="input_message" placeholder="Type a message...">
-                <input type="submit" value="Send" id="send_message">
+                <input type="submit" id="send_message" value="send">
             </form>
         </div>
     </div>
