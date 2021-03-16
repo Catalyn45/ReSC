@@ -30,17 +30,20 @@ function hide() {
     if (isHidden) {
         content.style.display = 'block';
         inputbar.style.display = 'block';
+        minimize.innerHTML = '➖';
     } else {
         content.style.display = 'none';
         inputbar.style.display = 'none';
+        minimize.innerHTML = '🔳';
     }
 
     isHidden = !isHidden;
 }
 
-var isHidden = true;
+var isHidden = false;
 var content = document.getElementById('chat__content');
 var inputbar = document.getElementById('chat__inputbar');
 var input = document.getElementById('input_message');
+var minimize = document.getElementById('hide_button');
 
 content.scrollBy(0, content.scrollHeight);
