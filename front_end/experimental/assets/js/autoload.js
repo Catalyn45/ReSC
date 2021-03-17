@@ -40,11 +40,13 @@ function hide() {
     isHidden = !isHidden;
 }
 
-var script = `
-    <div id="chat">
+
+var htmlRaw = `
+<div id="chat">
         <div id="chat__menubar">
             <button class="chat__menubar_button" id="hide_button" onclick="hide()">➖</button>
             <button class="chat__menubar_button" id="close_button" onclick="hide()">❌</button>
+
         </div>
 
         <div id="chat__content">
@@ -57,10 +59,10 @@ var script = `
             </form>
         </div>
     </div>
-`;
-
+`
 document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="https://catalyn45.github.io/ReSC/front_end/experimental/assets/css/style.css"/>');
-document.body.insertAdjacentHTML("beforeend", script);
+document.body.insertAdjacentHTML("beforeend", htmlRaw);
+
 
 var isHidden = false;
 var content = document.getElementById('chat__content');

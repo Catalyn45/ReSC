@@ -40,6 +40,8 @@ function hide() {
     isHidden = !isHidden;
 }
 
+//3152_insert_here
+
 var isHidden = false;
 var content = document.getElementById('chat__content');
 var inputbar = document.getElementById('chat__inputbar');
