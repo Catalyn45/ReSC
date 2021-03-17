@@ -1,12 +1,8 @@
-body {
-    padding: 0;
+* {
     margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
-
-.content p {
-    font-size: 4em;
-}
-
 
 /*
 Chat
