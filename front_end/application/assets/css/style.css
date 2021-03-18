@@ -82,3 +82,7 @@ footer ul {
     list-style: none;
     display: inline-block;
 }
+
+footer ul li {
+    word-break: break-all;
+}
