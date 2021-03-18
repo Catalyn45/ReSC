@@ -46,7 +46,6 @@ var htmlRaw = `
         <div id="chat__menubar">
             <button class="chat__menubar_button" id="hide_button" onclick="hide()">➖</button>
             <button class="chat__menubar_button" id="close_button" onclick="hide()">❌</button>
-
         </div>
 
         <div id="chat__content">
