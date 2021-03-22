@@ -18,7 +18,7 @@ function strangerMsg() {
     const backMessage = `
         <div class="chat__content__stranger">
             <div class="chat__content__stranger__container">
-                <p>Buna ziua, numele meu este Diana. cu ce va pot ajuta?</p>
+                <p>Asa este, aveti dreptate!</p>
             </div>
         </div>
     `

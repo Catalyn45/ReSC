@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <img id="logo" src="./resources/images/banner.png" alt="logo">
+        <p id="slogan"></p>
+        <nav id="menu">
+            <a href="./index.html"><img src="./resources/images/home.png" alt="home">Acasa</a>
+            <a href="./register.html"><img src="./resources/images/contact.png" alt="register">Register</a>
+            <a href="./login.html"><img src="./resources/images/photos.png" alt="login">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="panel" id="main_panel">
+            <h1 id="title">Register</h1>
+
+            <form action="./register.html" method="POST">
+                <div class="input_item">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="username" id="username" name="username">
+                </div>
+
+                <div class="input_item">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="email" id="email" name="email">
+                </div>
+
+                <div class="input_item">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="password" id="password" name="password">
+                </div>
+
+                <div class="input_item">
+                    <label for="r_password">Repeat password</label>
+                    <input type="password" placeholder="password" id="r_password">
+                </div>
+
+                <button type="submit" class="submit_button" id="register">Submit</button>
+                <button type="button" class="submit_button" onclick="location.href='./login.html'">Already have an account</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <ul>
+            <li> ceva</li>
+            <li>buna</li>
+        </ul>
+        <ul>
+            <li>test1 aaaaa aaaa</li>
+            <li>alceva</li>
+        </ul>
+        <ul>
+            <li>cevaaa aaaaaa aaaaaaa aaaaaaa aaaaaaa aaaaaa aaaaaaaa aaa aaaa</li>
+            <li>alceva</li>
+        </ul>
+    </footer>
+</body>
+
+</html>
