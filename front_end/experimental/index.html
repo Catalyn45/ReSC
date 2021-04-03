@@ -12,15 +12,15 @@
 <body>
     <div id="chat">
         <div id="chat__menubar">
-            <button class="chat__menubar_button" id="hide_button" onclick="hide()">➖</button>
-            <button class="chat__menubar_button" id="close_button" onclick="hide()">❌</button>
+            <button class="chat__menubar_button" id="hide_button" onclick="chat.hideContent()">➖</button>
+            <button class="chat__menubar_button" id="close_button" onclick="chat.closeCallback()">❌</button>
         </div>
 
         <div id="chat__content">
         </div>
 
         <div id="chat__inputbar">
-            <form onsubmit="return sendMsg()" autocomplete="off">
+            <form onsubmit="return chat.sendMsg()" autocomplete="off">
                 <input type="textarea" name="message" id="input_message" placeholder="Type a message...">
                 <input type="submit" id="send_message" value="send">
             </form>
@@ -49,7 +49,5 @@
     </div>
 </body>
 <script src="./assets/js/script.js"></script>
-<script src="https://social.cleverbot.com/social-initial-min.js?785933359"></script>
-<script src="https://www.cleverbot.com/extras/conversation-social-min.js?39"></script>
 
 </html>

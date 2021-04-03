@@ -1,0 +1,40 @@
+#title {
+    margin: 0;
+    color: white;
+}
+
+#try_demo {
+    width: 5em;
+    height: 5em;
+    position: fixed;
+    bottom: 50%;
+    right: 0;
+    margin-right: 50px;
+}
+
+.main_panel__text {
+    color: white;
+    font-size: 20px;
+}
+
+#main_panel ul {
+    text-align: center;
+    display: inline-block;
+}
+
+.submit_button {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+    border: none;
+    background-color: #979ca1;
+    box-sizing: border-box;
+    margin-top: 1em;
+    width: 15em;
+    height: 2em;
+    transition: background-color 0.3s linear;
+}
+
+.submit_button:hover {
+    cursor: pointer;
+    background-color: #606366;
+    transition: background-color 0.3s linear;
+}

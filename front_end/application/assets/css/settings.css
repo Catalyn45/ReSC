@@ -1,0 +1,14 @@
+#title {
+    margin: 0;
+    color: white;
+}
+
+.main_panel__text {
+    color: white;
+    font-size: 20px;
+}
+
+#main_panel ul {
+    text-align: center;
+    display: inline-block;
+}

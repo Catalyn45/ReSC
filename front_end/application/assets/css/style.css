@@ -77,75 +77,8 @@ main {
 }
 
 #main_panel {
-    margin: 100px 0;
-    padding: 30px 100px;
-}
-
-#main_panel ul {
-    text-align: center;
-    display: inline-block;
-}
-
-#main_panel form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.main_panel__text {
-    color: white;
-    font-size: 20px;
-}
-
-.input_item {
-    margin-top: 1.2em;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.input_item *,
-.submit_button {
-    font-size: 20px;
-}
-
-.input_item input {
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
-    border: none;
-    box-sizing: border-box;
-    margin-top: 0.5em;
-    width: 15em;
-    height: 2em;
-    text-indent: 10px;
-}
-
-.submit_button {
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
-    border: none;
-    background-color: #979ca1;
-    box-sizing: border-box;
-    margin-top: 1em;
-    width: 15em;
-    height: 2em;
-    transition: background-color 0.3s linear;
-}
-
-.submit_button:hover {
-    cursor: pointer;
-    background-color: #606366;
-    transition: background-color 0.3s linear;
-}
-
-#title {
-    margin: 0;
-    color: white;
-}
-
-#try_demo {
-    position: fixed;
-    bottom: 50%;
-    right: 0;
-    margin-right: 50px;
+    margin: 10em 0;
+    padding: 5em 4em;
 }
 
 footer {

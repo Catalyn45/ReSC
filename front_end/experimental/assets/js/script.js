@@ -1,51 +1,78 @@
-function sendMsg() {
-    const sendMessage = `
-        <div class="chat__content__me">
-            <div class="chat__content__me__container">
-                <p>${input.value}</p>
-            </div>
-        </div>
-    `
-    content.insertAdjacentHTML('beforeend', sendMessage);
-    content.scrollBy(0, content.scrollHeight);
-    input.value = "";
-    input.focus();
-    setTimeout(strangerMsg, 1000);
-    return false;
-}
+var chat = {};
 
-function strangerMsg() {
-    const backMessage = `
-        <div class="chat__content__stranger">
-            <div class="chat__content__stranger__container">
-                <p>Buna ziua, numele meu este Diana. cu ce va pot ajuta?</p>
-            </div>
-        </div>
-    `
-    content.insertAdjacentHTML('beforeend', backMessage);
-    content.scrollBy(0, content.scrollHeight);
-}
-
-function hide() {
-    if (isHidden) {
-        content.style.display = 'block';
-        inputbar.style.display = 'block';
-        minimize.innerHTML = '➖';
-    } else {
-        content.style.display = 'none';
-        inputbar.style.display = 'none';
-        minimize.innerHTML = '🔳';
+class Chat {
+    constructor(initialize = true) {
+        if (initialize)
+            this.init();
     }
 
-    isHidden = !isHidden;
+    init() {
+        this.isHidden = false;
+        this.content = document.getElementById('chat__content');
+        this.inputbar = document.getElementById('chat__inputbar');
+        this.input = document.getElementById('input_message');
+        this.minimize = document.getElementById('hide_button');
+        this.chat = document.getElementById('chat');
+        this.content.scrollBy(0, this.content.scrollHeight);
+    }
+
+    sendMsg() {
+        const sendMessage = `
+            <div class="chat__content__me">
+                <div class="chat__content__me__container">
+                    <p>${this.input.value}</p>
+                </div>
+            </div>
+        `
+        this.content.insertAdjacentHTML('beforeend', sendMessage);
+        this.content.scrollBy(0, this.content.scrollHeight);
+        this.input.value = "";
+        this.input.focus();
+        setTimeout(this.strangerMsg.bind(this), 1000);
+        return false;
+    }
+
+    strangerMsg() {
+        const backMessage = `
+            <div class="chat__content__stranger">
+                <div class="chat__content__stranger__container">
+                    <p>Asa este, aveti dreptate!</p>
+                </div>
+            </div>
+        `
+        this.content.insertAdjacentHTML('beforeend', backMessage);
+        this.content.scrollBy(0, this.content.scrollHeight);
+    }
+
+    hideContent() {
+        if (this.isHidden) {
+            this.content.style.display = 'block';
+            this.inputbar.style.display = 'block';
+            this.minimize.innerHTML = '➖';
+        } else {
+            this.content.style.display = 'none';
+            this.inputbar.style.display = 'none';
+            this.minimize.innerHTML = '🔳';
+        }
+
+        this.isHidden = !this.isHidden;
+    }
+
+    hide() {
+        this.chat.style.display = 'none';
+    }
+
+    show() {
+        this.chat.style.display = 'inline-block';
+    }
+
+    closeCallback() {
+        if (typeof onChatClose !== "undefined") {
+            onChatClose();
+        }
+    }
 }
 
 //3152_insert_here
 
-var isHidden = false;
-var content = document.getElementById('chat__content');
-var inputbar = document.getElementById('chat__inputbar');
-var input = document.getElementById('input_message');
-var minimize = document.getElementById('hide_button');
-
-content.scrollBy(0, content.scrollHeight);
+var chat = new Chat();

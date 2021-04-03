@@ -31,6 +31,7 @@ def parse_file(html_path, script_path, output_path):
         script_content = file.read()
 
     script_content = script_content.replace(b"//3152_insert_here", text_to_insert)
+    
     print(script_content)
 
     with open(output_path, "wb") as file:
