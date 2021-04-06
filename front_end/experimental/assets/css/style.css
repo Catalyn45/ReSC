@@ -7,18 +7,13 @@ body {
     font-size: 4em;
 }
 
-
-
-
-
-
 /*
 Chat
 */
 .chat {
     width: 20em;
     height: 30em;
-    background-color: rgba(51, 43, 43);
+    background-color: rgb(218, 172, 172);
     display: inline-block;
     position: fixed;
     right: 0;
@@ -27,6 +22,7 @@ Chat
     margin-bottom: 1em;
 }
 
+
 /*
 Chat menu
 */
@@ -34,24 +30,54 @@ Chat menu
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    background-color: rgba(240, 107, 74);
+    max-width: 300 !important;
+    /* margin:auto; */
+    /* margin-top: 4%; */
+    font-family: sans-serif;
+    background-color: rgb(146, 134, 201);
 }
 
-.chat__menubar_button {
+/* .chat__menubar_button {
     padding: 0.5em 2em 0.5em;
     display: inline-block;
     transition: background-color 1.3s linear;
 }
 
 .chat__menubar_button:hover {
-    background-color: rgb(51, 49, 46);
+    background-color: rgb(232, 236, 164);
     transition: background-color 1.3s linear;
 }
 
 .chat__menubar_button p {
     padding: 0;
     margin: 0;
+} */
+
+
+/* name+status */
+.active{
+    width: 200px;
+    float:left;
+    margin-top: 10 px;
 }
+
+.active h4{
+    font: size 20px;
+    margin-left: 10px;
+    color:aquamarine;
+}
+.active h6{
+    font-size: 10px;
+    margin-left: 10px;
+    line-height: 2px;
+    color:chartreuse;
+}
+
+
+.nav{ 
+}
+
+
 
 /*
 Chat content
@@ -60,6 +86,7 @@ Chat content
     background-color: inherit;
     overflow-y: scroll;
     height: 370px;
+    
 }
 
 .chat__content__stranger {
@@ -77,7 +104,7 @@ Chat content
 .chat__content__stranger__container {
     display: inline-block;
     width: 150px;
-    background-color: rgb(228, 141, 141);
+    background-color: rgb(233, 219, 219);
     border-radius: 5%;
     padding-right: 1em;
     padding-left: 1em;
@@ -85,7 +112,7 @@ Chat content
 
 
 .chat__content__me__container {
-    background-color: rgb(115, 194, 247);
+    background-color: rgb(165, 95, 136);
     display: inline-block;
     width: 150px;
     border-radius: 5%;
@@ -134,7 +161,7 @@ Input bar from bellow
   }
   
   .chat__content::-webkit-scrollbar-track {
-    background: rgb(51, 49, 46);; 
+    background: rgb(214, 183, 136);; 
   }
    
   .chat__content::-webkit-scrollbar-thumb {
