@@ -62,6 +62,7 @@ Chat menu
 }
 
 .active h4{
+    font-weight: bold;
     font: size 40px;
     margin-left: 10px;
     color:rgb(227, 225, 231);
@@ -76,7 +77,8 @@ Chat menu
 
 
 .nav{ 
-}
+    display: inline-block;}
+  
 
 
 
@@ -134,6 +136,7 @@ Input bar from bellow
     bottom: 0;
     right: 0;
     width: inherit;
+    
 }
 
 #input_message {
@@ -143,6 +146,7 @@ Input bar from bellow
     box-sizing: border-box;
     width: 15em;
     height: 2.6em;
+  
 }
 
 #send_message {
@@ -152,12 +156,16 @@ Input bar from bellow
     font-size: 1em;
     height: 2.6em;
     width: 3.5em;
+    font-weight: bold;
+    color:darkred;
+
 }
+    
 
 /*
     Scroll atributes
 */
-.chat__content::-webkit-scrollbar {
+ .chat__content::-webkit-scrollbar {
     width: 10px;
   }
   
