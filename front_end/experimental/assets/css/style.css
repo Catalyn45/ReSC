@@ -13,7 +13,7 @@ Chat
 .chat {
     width: 20em;
     height: 30em;
-    background-color: rgb(218, 172, 172);
+    background-color: rgb(162, 186, 250);
     display: inline-block;
     position: fixed;
     right: 0;
@@ -37,7 +37,7 @@ Chat menu
     /* margin:auto; */
     /* margin-top: 4%; */
     font-family: sans-serif;
-    background-color: rgb(146, 134, 201);
+    background-color: rgb(78, 55, 182);
 }
 
 /* .chat__menubar_button {
@@ -118,7 +118,7 @@ Chat content
 
 
 .chat__content__me__container {
-    background-color: rgb(165, 95, 136);
+    background-color: rgb(14, 154, 235);
     display: inline-block;
     width: 150px;
     border-radius: 5%;
