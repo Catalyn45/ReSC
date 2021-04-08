@@ -40,21 +40,23 @@ Chat menu
     background-color: rgb(78, 55, 182);
 }
 
+
+
 /* .chat__menubar_button {
-    padding: 0.5em 2em 0.5em;
+    padding: 0em 0em 0.5em;
     display: inline-block;
     transition: background-color 1.3s linear;
-}
+} */
 
-.chat__menubar_button:hover {
+ /* .chat__menubar_button:hover {
     background-color: rgb(232, 236, 164);
     transition: background-color 1.3s linear;
-}
+} */
 
-.chat__menubar_button p {
+/* .chat__menubar_button p {
     padding: 0;
     margin: 0;
-} */
+} */ 
 
 
 /* name+status */
@@ -62,6 +64,7 @@ Chat menu
     width: 270px;
     float:left;
     margin-top:  auto;
+    transition: background-color 1.3s linear;
 }
 
 .active h4{
@@ -78,7 +81,11 @@ Chat menu
     color:rgb(131, 236, 25);
 }
 .p{
-    margin-top: 20px;
+    margin-top: 60px;
+    background-color: rgb(232, 236, 164);
+    transition: background-color 1.3s linear;
+    padding: 10px;
+    justify-content: space-between;
 }
 
 .nav{ 
