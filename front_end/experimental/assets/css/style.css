@@ -18,8 +18,11 @@ Chat
     position: fixed;
     right: 0;
     bottom: 0;
-    margin-right: 1em;
+    margin-right: 1.5em;
     margin-bottom: 1em;
+    border-radius: 20px;
+    overflow:hidden;
+    
 }
 
 
@@ -56,9 +59,9 @@ Chat menu
 
 /* name+status */
 .active{
-    width: 200px;
+    width: 270px;
     float:left;
-    margin-top: 10 px;
+    margin-top:  auto;
 }
 
 .active h4{
@@ -74,14 +77,14 @@ Chat menu
     line-height: 2px;
     color:rgb(131, 236, 25);
 }
-
+.p{
+    margin-top: 20px;
+}
 
 .nav{ 
-    display: inline-block;}
+    display: inline-block;
+}
   
-
-
-
 /*
 Chat content
 */
