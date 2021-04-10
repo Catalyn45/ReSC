@@ -77,8 +77,16 @@ class Chat {
 var htmlRaw = `
 <div id="chat">
         <div id="chat__menubar">
-            <button class="chat__menubar_button" id="hide_button" onclick="chat.hideContent()">➖</button>
-            <button class="chat__menubar_button" id="close_button" onclick="chat.closeCallback()">❌</button>
+            <div id="chat__menubar__person">
+                <p class="menubar__element" id="available"></p>
+                <img class="menubar__element" src="https://catalyn45.github.io/ReSC/front_end/experimental/icons/diana.jpg" alt="Person" srcset="">
+                <p class="menubar__element">Diana</p>
+            </div>
+
+            <div id="chat__menubar__buttons">
+                <button id="hide_button" onclick="chat.hideContent()">➖</button>
+                <button id="close_button" onclick="chat.closeCallback()">❌</button>
+            </div>
         </div>
 
         <div id="chat__content">

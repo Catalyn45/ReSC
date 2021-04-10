@@ -40,7 +40,7 @@ def parse_file(html_path, script_path, output_path):
 
 
 if __name__ == '__main__':
-    html_path = r"..\..\index.html"
+    html_path = r"../../index.html"
     script_path = r"script.js"
     output_path = r"autoload.js"
 
