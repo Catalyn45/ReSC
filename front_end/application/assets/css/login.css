@@ -2,3 +2,9 @@
     margin: 0;
     color: white;
 }
+
+#main_panel {
+    display: inline-block;
+    margin: 10em 0;
+    padding: 5em 4em;
+}
