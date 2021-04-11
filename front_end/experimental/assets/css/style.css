@@ -102,7 +102,7 @@ Chat content
         margin-top: 1em;
         margin-right: 1em;
         float: right;
-    }
+     }
     
     .chat__content__stranger__container {
         display: inline-block;
@@ -164,7 +164,7 @@ Input bar from bellow
     
     .chat__content::-webkit-scrollbar-track {
         background: rgb(204, 200, 193);
-        ;
+        
     }
     
     .chat__content::-webkit-scrollbar-thumb {
