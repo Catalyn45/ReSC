@@ -12,6 +12,17 @@
     margin-right: 50px;
 }
 
+#main_panel {
+    margin: 5em 0;
+    padding: 5em 4em;
+}
+
+@media screen and (max-width: 710px) {
+    #main_panel {
+        padding: 5em 0;
+    }
+}
+
 .main_panel__text {
     color: white;
     font-size: 20px;

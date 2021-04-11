@@ -176,12 +176,30 @@
     }
     .submit_button {
         font-size: 15px;
-        width: 10em;
+        width: 7em;
     }
     main>.panel {
         box-shadow: none;
     }
     .functions {
         text-align: center;
+    }
+    .main_panel__elements {
+        margin-top: 1em;
+    }
+    .main_panel__elements__settings {
+        padding-left: 1.7em;
+        padding-right: 1.7em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    #chat_colors,
+    #position {
+        font-size: 0.8em;
+    }
+    #main_panel {
+        margin: 0;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
