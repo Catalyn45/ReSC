@@ -1,10 +1,21 @@
+/* the main panel */
+
+#main_panel {
+    margin: 10em 0;
+    padding: 5em 4em;
+    width: 70%;
+}
+
 #title {
     margin: 0;
     color: white;
     justify-self: center;
 }
 
-.main_panel__text {
+
+/* the elements from the panel */
+
+.main_panel__elements {
     margin-top: 3em;
     color: white;
     font-size: 25px;
@@ -14,17 +25,13 @@
     align-items: center;
 }
 
-#main_panel {
-    margin: 10em 0;
-    padding: 5em 4em;
-    width: 70%;
+.main_panel__elements__settings {
+    padding: 2em;
+    margin: 2em;
 }
 
-#main_panel ul {
-    text-align: center;
-    display: inline-block;
-    list-style: none;
-}
+
+/* Collors setting */
 
 #chat_colors {
     display: inline-block;
@@ -101,10 +108,29 @@
     cursor: pointer;
 }
 
-.settings_element {
-    padding: 2em;
-    margin: 2em;
+
+/* the position setting */
+
+#position div {
+    display: inline-block;
+    width: 5em;
+    height: 5em;
+    background-color: rgb(86, 86, 105);
+    transition: background-color 0.3s linear;
 }
+
+#position #selected {
+    background-color: rgb(171, 231, 111);
+}
+
+#position div:hover {
+    background-color: chocolate;
+    transition: background-color 0.3s linear;
+    cursor: pointer;
+}
+
+
+/* the settings for callback functions, class name and object name */
 
 .functions {
     font-size: 17px;
@@ -115,22 +141,12 @@
     margin-top: 1em;
 }
 
-#position div {
-    display: inline-block;
-    width: 5em;
-    height: 5em;
-    background-color: rgb(86, 86, 105);
-    transition: background-color 0.3s linear;
-}
 
-#position div:hover {
-    background-color: chocolate;
-    transition: background-color 0.3s linear;
-    cursor: pointer;
-}
+/* Save and cancel buttons */
 
-#selected {
-    background-color: rgb(171, 231, 111) !important;
+#buttons {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .submit_button {
@@ -149,9 +165,4 @@
     cursor: pointer;
     background-color: #606366;
     transition: background-color 0.3s linear;
-}
-
-#buttons {
-    display: flex;
-    justify-content: space-evenly;
 }
