@@ -2,6 +2,7 @@
 
 main {
     display: flex;
+    height: 100vh;
 }
 
 hr {
@@ -211,4 +212,33 @@ hr {
     transition: background-color 0.3s linear;
     background-color: lightgoldenrodyellow;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1090px) {
+    .chat_container__chats__element {
+        flex-direction: column;
+        padding: 2em;
+    }
+    #chat_container__conversation__content {
+        font-size: 12px;
+    }
+    #chat_container__conversation p,
+    #chat_container__conversation button {
+        font-size: 12px;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .message {
+        width: 15em;
+    }
+    #input_message {
+        width: 15em;
+        font-size: 1em;
+    }
+    #send_message {
+        font-size: 0.8em;
+    }
+    #dot {
+        display: none !important;
+    }
 }

@@ -27,6 +27,8 @@ header {
 }
 
 #menu a {
+    display: flex;
+    align-items: center;
     padding: 1.2em 3em;
     font-size: 1em;
     text-decoration: none;
@@ -40,13 +42,16 @@ header {
 }
 
 #menu a img {
-    width: 1.2em;
+    width: 1.5em;
     margin-right: 0.5em;
 }
 
 @media screen and (max-width: 710px) {
     #logo {
         display: none;
+    }
+    #menu a {
+        font-size: 0.9em;
     }
 }
 

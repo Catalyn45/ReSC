@@ -156,7 +156,7 @@
     background-color: #979ca1;
     box-sizing: border-box;
     margin-top: 1em;
-    width: 15em;
+    width: 11em;
     height: 2em;
     transition: background-color 0.3s linear;
 }
@@ -165,4 +165,23 @@
     cursor: pointer;
     background-color: #606366;
     transition: background-color 0.3s linear;
+}
+
+@media screen and (max-width: 710px) {
+    #main_panel {
+        background: none;
+    }
+    #buttons {
+        justify-content: space-between;
+    }
+    .submit_button {
+        font-size: 15px;
+        width: 10em;
+    }
+    main>.panel {
+        box-shadow: none;
+    }
+    .functions {
+        text-align: center;
+    }
 }
