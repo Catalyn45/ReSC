@@ -2,3 +2,15 @@
     margin: 0;
     color: white;
 }
+
+#main_panel {
+    display: inline-block;
+    margin: 10em 0;
+    padding: 5em 4em;
+}
+
+@media screen and (max-width: 710px) {
+    #main_panel {
+        padding: 5em 1.5em;
+    }
+}

@@ -19,9 +19,7 @@ class Chat {
     sendMsg() {
         const sendMessage = `
             <div class="chat__content__me">
-                <div class="chat__content__me__container">
-                    <p>${this.input.value}</p>
-                </div>
+                <p>${this.input.value}</p>
             </div>
         `
         this.content.insertAdjacentHTML('beforeend', sendMessage);
@@ -35,9 +33,7 @@ class Chat {
     strangerMsg() {
         const backMessage = `
             <div class="chat__content__stranger">
-                <div class="chat__content__stranger__container">
-                    <p>Asa este, aveti dreptate!</p>
-                </div>
+                <p>Asa este, aveti dreptate!</p>
             </div>
         `
         this.content.insertAdjacentHTML('beforeend', backMessage);

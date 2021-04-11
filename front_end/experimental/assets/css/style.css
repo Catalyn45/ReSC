@@ -90,30 +90,25 @@ Chat content
         background-color: inherit;
         overflow-y: scroll;
         height: 22em;
+        display: flex;
+        flex-direction: column;
     }
     
     .chat__content__stranger {
-        margin-top: 1em;
-        margin-left: 1em;
-        float: left;
-    }
-    
-    .chat__content__me {
-        margin-top: 1em;
-        margin-right: 1em;
-        float: right;
-     }
-    
-    .chat__content__stranger__container {
+        align-self: flex-start;
+        background-color: rgb(233, 219, 219);
         display: inline-block;
         width: 10em;
-        background-color: rgb(233, 219, 219);
         border-radius: 5%;
         padding-right: 1em;
         padding-left: 1em;
+        overflow-wrap: break-word;
+        margin-top: 1em;
+        margin-left: 1em;
     }
     
-    .chat__content__me__container {
+    .chat__content__me {
+        align-self: flex-end;
         background-color: rgb(14, 154, 235);
         display: inline-block;
         width: 10em;
@@ -121,6 +116,8 @@ Chat content
         padding-right: 1em;
         padding-left: 1em;
         overflow-wrap: break-word;
+        margin-top: 1em;
+        margin-right: 1em;
     }
     /*
 Input bar from bellow
@@ -158,19 +155,18 @@ Input bar from bellow
     Scroll atributes
 */
     
-    .chat__content::-webkit-scrollbar {
+    #chat__content::-webkit-scrollbar {
         width: 10px;
     }
     
-    .chat__content::-webkit-scrollbar-track {
+    #chat__content::-webkit-scrollbar-track {
         background: rgb(204, 200, 193);
-        
     }
     
-    .chat__content::-webkit-scrollbar-thumb {
+    #chat__content::-webkit-scrollbar-thumb {
         background: #888;
     }
     
-    .chat__content::-webkit-scrollbar-thumb:hover {
+    #chat__content::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
