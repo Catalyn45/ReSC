@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/chat.css">
-</head>
-
-<body>
-    <header>
-        <img id="logo" src="./resources/images/banner.png" alt="logo">
-        <p id="slogan"></p>
-        <nav id="menu">
-            <a href="./chat.html"><img src="./resources/images/chat.png" alt="chat">Chat</a>
-            <a href="./settings.html"><img src="./resources/images/settings.png" alt="settings">Settings</a>
-            <a href="./index.html"><img src="./resources/images/logout.png" alt="logout">Logout</a>
-        </nav>
-    </header>
-
     <main>
         <div id="chat_container__chats">
             <div class="chat_container__chats__element">
@@ -87,6 +64,3 @@
             </div>
         </div>
     </main>
-</body>
-
-</html>

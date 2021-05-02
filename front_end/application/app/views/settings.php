@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/settings.css">
-</head>
-
-<body>
-    <header>
-        <img id="logo" src="./resources/images/banner.png" alt="logo">
-        <p id="slogan"></p>
-        <nav id="menu">
-            <a href="./chat.html"><img src="./resources/images/chat.png" alt="chat">Chat</a>
-            <a href="./settings.html"><img src="./resources/images/settings.png" alt="Settings">Settings</a>
-            <a href="./index.html"><img src="./resources/images/logout.png" alt="logout">Logout</a>
-        </nav>
-    </header>
-
     <main>
         <div class="panel" id="main_panel">
             <h1 id="title">Chat settings</h1>
@@ -118,22 +95,3 @@
             </div>
         </div>
     </main>
-
-    <footer>
-        <ul>
-            <li> ceva</li>
-            <li>buna</li>
-        </ul>
-        <ul>
-            <li>test1 aaaaa aaaa</li>
-            <li>alceva</li>
-        </ul>
-        <ul>
-            <li>cevaaa aaaaaa aaaaaaa aaaaaaa aaaaaaa aaaaaa aaaaaaaa aaa aaaa</li>
-            <li>alceva</li>
-        </ul>
-    </footer>
-    <script src="./assets/js/settings.js"></script>
-</body>
-
-</html>
