@@ -14,8 +14,6 @@ if(isset($data['css'])) {
 }
 
     ?>
-    <link rel="stylesheet" href="/public/css/style.css" type="text/css" >
-    <link rel="stylesheet" href="/public/css/index.css" type="text/css" >
 </head>
 
 <body>
