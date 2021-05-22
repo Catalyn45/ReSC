@@ -8,6 +8,9 @@ class Login extends Controller {
                 'style',
                 'form',
                 'login'
+            ],
+            'scripts' => [
+                'login'
             ]
         ]);
     }

@@ -45,6 +45,7 @@ if(isset($data['css'])) {
             <li>alceva</li>
         </ul>
     </footer>
+    <script src="/public/js/sha.js"></script>
 <?php
     if(isset($data['scripts'])) {
         foreach($data['scripts'] as $script_data) {

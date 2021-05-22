@@ -24,11 +24,12 @@
         <nav id="menu">
             <a href="/public/chat"><img src="/public/resources/images/chat.png" alt="chat">Chat</a>
             <a href="/public/settings"><img src="/public/resources/images/settings.png" alt="Settings">Settings</a>
-            <a href="/public/home"><img src="/public/resources/images/logout.png" alt="logout">Logout</a>
+            <a id="logout" href=""><img src="/public/resources/images/logout.png" alt="logout">Logout</a>
         </nav>
         </header>
     <?php
     require_once __DIR__ . '/' . $data['view'] . '.php';
+    echo '<script src="/public/js/logout.js"></script>';
     if(isset($data['scripts'])) {
         foreach($data['scripts'] as $script_data) {
             echo '<script src="/public/js/' . $script_data . '.js"></script>';

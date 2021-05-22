@@ -8,6 +8,9 @@ class Register extends Controller {
                 'style',
                 'form',
                 'register'
+            ],
+            'scripts' => [
+                'register'
             ]
         ]);
     }

@@ -2,28 +2,28 @@
         <div class="panel" id="main_panel">
             <h1 id="title">Register</h1>
 
-            <form action="/public/register" method="POST">
+            <form id="register_form">
                 <div class="input_item">
                     <label for="username">Username</label>
-                    <input type="text" placeholder="username" id="username" name="username">
+                    <input type="text" placeholder="username" id="username" name="username" required>
                 </div>
 
                 <div class="input_item">
                     <label for="email">Email</label>
-                    <input type="text" placeholder="email" id="email" name="email">
+                    <input type="text" placeholder="email" id="email" name="email" required>
                 </div>
 
                 <div class="input_item">
                     <label for="password">Password</label>
-                    <input type="password" placeholder="password" id="password" name="password">
+                    <input type="password" placeholder="password" id="password" name="password" required>
                 </div>
 
                 <div class="input_item">
                     <label for="r_password">Repeat password</label>
-                    <input type="password" placeholder="password" id="r_password">
+                    <input type="password" placeholder="password" id="r_password" required>
                 </div>
 
-                <button type="submit" class="submit_button" id="register">Submit</button>
+                <input type="submit" class="submit_button" id="register" value="Submit">
                 <button type="button" class="submit_button" onclick="location.href='/public/login'">Already have an account</button>
             </form>
         </div>

@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div id="buttons">
-                <button class="submit_button">Save</button>
+                <button class="submit_button" onclick="send_configuration()">Save</button>
                 <button class="submit_button">Cancel</button>
             </div>
         </div>
