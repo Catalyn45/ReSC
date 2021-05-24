@@ -16,10 +16,10 @@
         <div id="chat_container__conversation">
             <div id="chat_container__conversation__header">
                 <button> <img src="./resources/images/save.png">Save conversation</button>
-                <p><img src="./resources/images/user.png">Daniel</p>
+                <p><img src="/resources/images/user.png">Daniel</p>
                 <p id="dot"></p>
 
-                <button><img src="./resources/images/close.png">Close</button>
+                <button><img src="/resources/images/close.png">Close</button>
             </div>
             <hr>
             <div id="chat_container__conversation__content">

@@ -12,7 +12,7 @@ function register() {
     let email_input = document.getElementById("email");
 
     if (password_input.value != r_password_input.value) {
-        window.location.href = "/public/register";
+        window.location.href = "/register";
         return;
     }
 
@@ -27,15 +27,15 @@ function register() {
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
             if (this.status == 200)
-                window.location.href = "/public/login";
+                window.location.href = "/login";
             else
-                window.location.href = "/public/register"
+                window.location.href = "/register"
 
             //console.log(xhr.response);
         }
     };
 
-    xhr.open("POST", "/public/api/create_account", true);
+    xhr.open("POST", "/api/create_account", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(credentials));
 }

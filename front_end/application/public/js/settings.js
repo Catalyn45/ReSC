@@ -92,7 +92,7 @@ function send_configuration(update = true) {
         }
     };
 
-    xhr.open("POST", "/public/api/" + (update ? "update_configuration" : "register_configuration"), true);
+    xhr.open("POST", "/api/" + (update ? "update_configuration" : "register_configuration"), true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(configuration));
 }

@@ -25,15 +25,15 @@ function login() {
         if (this.readyState == 4) {
 
             if (this.status == 200)
-                window.location.href = "/public/settings";
+                window.location.href = "/settings";
             else
-                window.location.href = "/public/login"
+                window.location.href = "/login"
 
             // console.log(xhr.response);
         }
     };
 
-    xhr.open("POST", "/public/api/login", true);
+    xhr.open("POST", "/api/login", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(credentials));
 }

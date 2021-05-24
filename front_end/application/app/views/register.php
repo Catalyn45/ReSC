@@ -24,7 +24,7 @@
                 </div>
 
                 <input type="submit" class="submit_button" id="register" value="Submit">
-                <button type="button" class="submit_button" onclick="location.href='/public/login'">Already have an account</button>
+                <button type="button" class="submit_button" onclick="location.href='/login'">Already have an account</button>
             </form>
         </div>
     </main>

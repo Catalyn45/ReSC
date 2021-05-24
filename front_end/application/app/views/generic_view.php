@@ -9,7 +9,7 @@
 
 if(isset($data['css'])) {
     foreach($data['css'] as $css_data) {
-        echo '<link rel="stylesheet" href="/public/css/' . $css_data . '.css" type="text/css" >';
+        echo '<link rel="stylesheet" href="/css/' . $css_data . '.css" type="text/css" >';
     }
 }
 
@@ -18,12 +18,12 @@ if(isset($data['css'])) {
 
 <body>
     <header>
-        <img id="logo" src="/public/resources/images/banner.png" alt="logo">
+        <img id="logo" src="/resources/images/banner.png" alt="logo">
         <p id="slogan"></p>
         <nav id="menu">
-            <a href="/public/home"><img src="/public/resources/images/home.png" alt="home">Acasa</a>
-            <a href="/public/register"><img src="/public/resources/images/register.png" alt="register">Register</a>
-            <a href="/public/login"><img src="/public/resources/images/login.png" alt="login">Login</a>
+            <a href="/home"><img src="/resources/images/home.png" alt="home">Acasa</a>
+            <a href="/register"><img src="/resources/images/register.png" alt="register">Register</a>
+            <a href="/login"><img src="/resources/images/login.png" alt="login">Login</a>
         </nav>
     </header>
 
@@ -45,11 +45,11 @@ if(isset($data['css'])) {
             <li>alceva</li>
         </ul>
     </footer>
-    <script src="/public/js/sha.js"></script>
+    <script src="/js/sha.js"></script>
 <?php
     if(isset($data['scripts'])) {
         foreach($data['scripts'] as $script_data) {
-            echo '<script src="/public/js/' . $script_data . '.js"></script>';
+            echo '<script src="/js/' . $script_data . '.js"></script>';
         }
     }
 ?>

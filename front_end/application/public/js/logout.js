@@ -10,10 +10,10 @@ function logout() {
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
-            window.location.href = "/public/home";
+            window.location.href = "/home";
         }
     };
 
-    xhr.open("POST", "/public/api/logout", true);
+    xhr.open("POST", "/api/logout", true);
     xhr.send();
 }

@@ -10,7 +10,7 @@
 
     if(isset($data['css'])) {
         foreach($data['css'] as $css_data) {
-            echo '<link rel="stylesheet" href="/public/css/' . $css_data . '.css" type="text/css" >';
+            echo '<link rel="stylesheet" href="/css/' . $css_data . '.css" type="text/css" >';
         }
     }
 
@@ -19,20 +19,20 @@
 
 <body>
     <header>
-        <img id="logo" src="./resources/images/banner.png" alt="logo">
+        <img id="logo" src="/resources/images/banner.png" alt="logo">
         <p id="slogan"></p>
         <nav id="menu">
-            <a href="/public/chat"><img src="/public/resources/images/chat.png" alt="chat">Chat</a>
-            <a href="/public/settings"><img src="/public/resources/images/settings.png" alt="Settings">Settings</a>
-            <a id="logout" href=""><img src="/public/resources/images/logout.png" alt="logout">Logout</a>
+            <a href="/chat"><img src="/resources/images/chat.png" alt="chat">Chat</a>
+            <a href="/settings"><img src="/resources/images/settings.png" alt="Settings">Settings</a>
+            <a id="logout" href=""><img src="/resources/images/logout.png" alt="logout">Logout</a>
         </nav>
         </header>
     <?php
     require_once __DIR__ . '/' . $data['view'] . '.php';
-    echo '<script src="/public/js/logout.js"></script>';
+    echo '<script src="/js/logout.js"></script>';
     if(isset($data['scripts'])) {
         foreach($data['scripts'] as $script_data) {
-            echo '<script src="/public/js/' . $script_data . '.js"></script>';
+            echo '<script src="/js/' . $script_data . '.js"></script>';
         }
     }
     ?>
