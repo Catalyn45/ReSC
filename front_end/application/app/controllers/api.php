@@ -45,16 +45,19 @@ class Api extends PostController {
             return $this->send_response(Controller::ERROR_MESSAGE);
         }
 
+        // temporary unavailable
+        /*
         $admin = Admin::create(
             $this->entityBody
         );
+        */
 
         if(is_null($admin)) {
             http_response_code(403);
             return $this->send_response(Controller::ERROR_MESSAGE);
         }
 
-        echo $admin;
+        echo 'success';
     }
 
     public function register_configuration() {
