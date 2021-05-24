@@ -22,4 +22,12 @@ class Admin extends Eloquent {
                                 }
                             )->wherePassword($password)->first();
     }
+
+    public static function setToken($name, $token) {
+        return Admin::whereName($name)->update(["token" => $token]);
+    }
+
+    public static function GetByToken($token, $server_id) {
+        return Admin::whereToken($token)->where('server_id', $server_id)->first();
+    }
 }

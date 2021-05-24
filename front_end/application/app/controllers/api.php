@@ -20,6 +20,8 @@ class Api extends PostController {
             $_SESSION['valid'] = true;
             $_SESSION['user'] = $admin->name;
             $_SESSION['server_id'] = $admin->server_id;
+
+            Admin::setToken($admin->name, session_id());
             return $this->send_response(Controller::SUCCESS_MESSAGE);
         }
 
@@ -101,8 +103,18 @@ class Api extends PostController {
             http_response_code(403);
             return $this->send_response(Controller::ERROR_MESSAGE);
         }
-
         echo $config;
+    }
+
+    public function add_key() {
+        $key = Key::create($this->entityBody);
+
+        if(is_null($key)) {
+            http_response_code(403);
+            return $this->send_response(Controller::ERROR_MESSAGE);
+        }
+
+        echo $key;
     }
 
     public function test() {
