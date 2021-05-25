@@ -18,22 +18,18 @@ function login() {
     console.log(credentials.name);
     console.log(credentials.password);
 
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-
-            if (this.status == 200)
-                window.location.href = "/settings";
-            else
-                window.location.href = "/login"
-
-            // console.log(xhr.response);
-        }
-    };
-
-    xhr.open("POST", "/api/login", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(credentials));
+    fetch("/api/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    }).then(function(response) {
+        console.log(response);
+        if (response.status == 200)
+            window.location.href = "/settings";
+        else
+            window.location.href = "/login";
+    });
 }

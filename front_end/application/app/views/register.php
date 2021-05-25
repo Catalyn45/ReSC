@@ -2,7 +2,7 @@
         <div class="panel" id="main_panel">
             <h1 id="title">Register</h1>
 
-            <form id="register_form">
+            <form id="register_form" autocomplete=off>
                 <div class="input_item">
                     <label for="username">Username</label>
                     <input type="text" placeholder="username" id="username" name="username" required>

@@ -1,37 +1,43 @@
 <?php
-class Api extends PostController {
-    public function __construct() {
-        parent::__construct();
-    }
-
-    public function login() {
-        $required_params = [
-            "name",
-            "password"
-        ];
-
-        if(!$this->arguments_exists($required_params)) {
-            return $this->send_response(Controller::ERROR_MESSAGE);
-        }
-
-        $admin = Admin::get_user($this->entityBody["name"], $this->entityBody["password"]);
-
-        if(!is_null($admin)) {
-            $_SESSION['valid'] = true;
-            $_SESSION['user'] = $admin->name;
-            $_SESSION['server_id'] = $admin->server_id;
-
-            Admin::setToken($admin->name, session_id());
-            return $this->send_response(Controller::SUCCESS_MESSAGE);
-        }
-
-        http_response_code(403);
-        $this->send_response(Controller::ERROR_MESSAGE);
-    }
-
+class Api {
     public function logout() {
         $_SESSION['valid'] = false;
         $this->send_response(Controller::SUCCESS_MESSAGE);
+    }
+
+    public function execute($method) {
+        $class_name = "{$method}method";
+
+        require "../app/commands/{$class_name}.php";
+
+        if(!class_exists($class_name))
+             return ApiMethod::send_error("Endpoint does not exists: " . $class_name);
+
+        $class = new $class_name;
+
+        if(!is_subclass_of($class, $_SERVER['REQUEST_METHOD'] . 'Method'))
+            return ApiMethod::send_error("Don't support " . $_SERVER['REQUEST_METHOD'] . " method");
+
+        $required_params = $class->fields;
+
+        $request_methods = $class->get_methods();
+
+        $params_to_pass = [];
+
+        foreach($required_params as $key => $value) {
+            if(!isset($request_methods[$key])) {
+                if($value['mandatory']) {
+                    return ApiMethod::send_error("Invalid parameters ");
+                }
+
+                if(isset($value['default']))
+                    $request_methods[$key] = $value['default'];
+            }
+
+            $params_to_pass[$key] = $request_methods[$key];
+        }
+
+        call_user_func([$class, "run"], $params_to_pass);
     }
 
     public function create_account() {

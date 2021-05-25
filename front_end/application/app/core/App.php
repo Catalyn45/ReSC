@@ -19,18 +19,13 @@ class App {
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        if($this->controller->need_auth()) {
-            if(!isset($_SESSION['valid']) || !$_SESSION['valid']) {
-                require_once '../app/controllers/login.php';
-                $this->controller = new Login();
-            }
-        } else {
-            if(isset($_SESSION['valid']) && $_SESSION['valid']  && get_class($this->controller) !== 'Api') {
-                $_SESSION['valid'] = false;
-            }
+        if(isset($url[1])) {
+            $this->method = $url[1];
+            unset($url[1]);
         }
-
-        if(http_response_code() >= 400) {
+        
+        if($this->controller instanceof Api) {
+            call_user_func([$this->controller, 'execute'], $this->method);
             return;
         }
 
@@ -41,8 +36,19 @@ class App {
             unset($url[1]);
         }
 
-        $this->params = $url ? array_values($url) : [];
+        if($this->controller->need_auth()) {
+            if(!isset($_SESSION['valid']) || !$_SESSION['valid']) {
+                header("Location: /login");
+                return;
+            }
+        } else {
+            if(isset($_SESSION['valid']) && $_SESSION['valid'] && $this->controller instanceof Login) {
+                header("Location: /settings");
+                return;
+            }
+        }
 
+        $this->params = $url ? array_values($url) : [];
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 

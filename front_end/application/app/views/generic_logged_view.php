@@ -1,11 +1,12 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App</title>
+    <link rel="icon" href="/resources/images/favicon.png">
+    <title>Resc</title>
      <?php
 
     if(isset($data['css'])) {
@@ -26,9 +27,10 @@
             <a href="/settings"><img src="/resources/images/settings.png" alt="Settings">Settings</a>
             <a id="logout" href=""><img src="/resources/images/logout.png" alt="logout">Logout</a>
         </nav>
-        </header>
+    </header>
     <?php
-    require_once __DIR__ . '/' . $data['view'] . '.php';
+    if(isset($data['view']))
+        require_once __DIR__ . '/' . $data['view'] . '.php';
     echo '<script src="/js/logout.js"></script>';
     if(isset($data['scripts'])) {
         foreach($data['scripts'] as $script_data) {
