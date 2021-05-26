@@ -1,10 +1,10 @@
 <?php
 
-class LoginMethod extends PostMethod {
+class Login_Method extends PostMethod {
     public function __construct() {
         parent::__construct();
     }
-    public $fields = [
+    private $fields = [
         'name' => [
             'mandatory' => true
         ],
@@ -12,6 +12,10 @@ class LoginMethod extends PostMethod {
             'mandatory' => true
         ]
     ];
+
+    public function get_required() {
+        return $this->fields;
+    }
 
     public function run($params) {
         $admin = Admin::get_user($params["name"], $params["password"]);

@@ -3,8 +3,8 @@
 abstract class PostMethod extends ApiMethod {
     protected $entityBody;
 
-    protected function __construct() {
-        parent::__construct();
+    protected function __construct($need_auth=false) {
+        parent::__construct($need_auth);
         $this->entityBody = $this->get_body();
     }
 
