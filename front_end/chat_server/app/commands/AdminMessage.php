@@ -34,10 +34,12 @@ class AdminMessage implements Command {
                 }
 
                 $message = [
+                    "response_type" => "message",
                     "message" => $msg["message"]
                 ];
 
                 $receiver->socket->send(json_encode($message));
+                $client->socket->send(json_encode(["response_type" => "success"]));
                 break;
             }
         }

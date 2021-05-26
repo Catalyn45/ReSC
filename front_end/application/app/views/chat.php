@@ -23,41 +23,10 @@
             </div>
             <hr>
             <div id="chat_container__conversation__content">
-                <div class="message message_me">
-                    <p>buna Ziua</p>
-                </div>
-
-                <div class="message message_stranger">
-                    <p>As dori sa ma ajutati</p>
-                </div>
-
-                <div class="message message_me">
-                    <p>buna Ziua</p>
-                </div>
-
-                <div class="message message_stranger">
-                    <p>As dori sa ma ajutati</p>
-                </div>
-
-                <div class="message message_me">
-                    <p>buna Ziua</p>
-                </div>
-
-                <div class="message message_stranger">
-                    <p>As dori sa ma ajutati</p>
-                </div>
-
-                <div class="message message_me">
-                    <p>buna Ziua</p>
-                </div>
-
-                <div class="message message_stranger">
-                    <p>As dori sa ma ajutati</p>
-                </div>
             </div>
             <hr>
             <div id="chat_container__conversation__bottom">
-                <form autocomplete="off">
+                <form id = "input_form" autocomplete="off">
                     <input type="textarea" name="message" id="input_message" placeholder="Type a message...">
                     <input type="submit" id="send_message" value="send">
                 </form>

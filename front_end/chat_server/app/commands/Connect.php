@@ -18,7 +18,5 @@ class Connect implements Command {
         }
 
         $client->id = $db_client->id;
-
-        $client->socket->send("success");
     }
 }

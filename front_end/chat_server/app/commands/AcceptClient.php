@@ -6,9 +6,8 @@ class AcceptClient implements Command {
 
     public function run($msg, $client, $clients) {
         $admin = Admin::getByToken($msg["token"], $msg["server_id"]);
+        echo $admin->id;
         $client_db = Client::updateAccept($admin->id, $msg["server_id"]);
-
-        $client->id = $admin->id;
         
         if(is_null($client_db)) {
             $client->socket->close();
@@ -16,6 +15,7 @@ class AcceptClient implements Command {
         }
 
         $message = [
+            "response_type" => "accepted",
             "name" => $admin->name,
             "message" => "Connected"
         ];
@@ -28,7 +28,9 @@ class AcceptClient implements Command {
         }
 
         $message = [
+            "response_type" => "got_client",
             "client_id" => $client_db->id,
+            "client_name" =>$client_db->name
         ];
 
         $client->socket->send(json_encode($message));

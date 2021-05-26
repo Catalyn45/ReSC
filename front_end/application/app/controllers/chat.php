@@ -11,6 +11,9 @@ class Chat extends Controller {
             'css' => [
                 'style',
                 'chat'
+            ],
+            'scripts' => [
+                'chat'
             ]
         ]);
     }

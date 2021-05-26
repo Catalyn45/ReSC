@@ -5,7 +5,7 @@ namespace MyApp;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-function validAuthority($authority, $token, $server_id) {
+function validAuthority($authority, $token, $server_id, $client) {
     if($authority == 'USER') {
         $token = \Key::getToken($token, $server_id);
         if(is_null($token))
@@ -21,7 +21,8 @@ function validAuthority($authority, $token, $server_id) {
             log_info("n-am gasit");
             return false;
         }
-
+        $client->id = $token->id;
+        echo $client->id;
         return true;
     }
 
@@ -88,7 +89,7 @@ class Socket implements MessageComponentInterface {
 
                 $command = new $command_text;
 
-                if(!validAuthority($command->getAuth(), $msg["token"], $msg["server_id"])) {
+                if(!validAuthority($command->getAuth(), $msg["token"], $msg["server_id"], $client_info)) {
                     $client->close();
                     return;
                 }

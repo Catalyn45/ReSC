@@ -9,7 +9,8 @@ class Client extends Eloquent {
         "id",
         "name",
         "server_id",
-        "waiting"
+        "waiting",
+        "admin_id"
     ];
 
     public $timestamps = [];
@@ -22,7 +23,7 @@ class Client extends Eloquent {
                     "admin_id" => $admin_id,
                     "waiting" => false
                 ]);
-            
+
         return $client;
     }
 }
