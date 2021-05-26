@@ -15,7 +15,7 @@ class Chat {
         this.chat = document.getElementById('chat');
         this.content.scrollBy(0, this.content.scrollHeight);
 
-        this.socket = new WebSocket('ws://localhost:8081');
+        this.socket = new WebSocket('ws://77.81.177.191:8081');
         let stranger_callback = this.strangerMsg.bind(this);
         let me_callback = this.sendMsg.bind(this);
 
