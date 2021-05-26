@@ -6,7 +6,6 @@ loginForm.addEventListener("submit", function(event) {
 });
 
 function login() {
-
     let username_input = document.getElementById("username");
     let password_input = document.getElementById("password");
 

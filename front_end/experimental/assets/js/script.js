@@ -7,6 +7,19 @@ class Chat {
     }
 
     init() {
+        socket = new WebSocket('ws://localhost:8081');
+
+        socket.onmessage = function(e) {
+            console.log(e.data);
+        }
+
+        socket.onopen = function(e) {
+            document.getElementById("chat__form").addEventListener("submit", function(e) {
+                e.preventDefault();
+                this.sendMsg();
+            });
+        }
+
         this.isHidden = false;
         this.content = document.getElementById('chat__content');
         this.inputbar = document.getElementById('chat__inputbar');
