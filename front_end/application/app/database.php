@@ -4,7 +4,12 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 $capsule = new Capsule();
 
-$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
+$url = getenv("DATABASE_URL");
+if($url == false) {
+    $url = "postgres://postgres:admin@192.168.1.150:5432/Resc";
+}
+
+$DATABASE_URL = parse_url($url);
 
 $capsule->addConnection([
     'driver' => 'pgsql',

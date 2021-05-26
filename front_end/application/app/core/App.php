@@ -7,7 +7,7 @@ class App {
 
     public function __construct() {
         $url = $this->parseUrl();
-
+        unset($_GET['url']);
         if(isset($url[0])) {
             $controller_file = '../app/controllers/' . $url[0] . '.php';
             if(file_exists($controller_file)) {
