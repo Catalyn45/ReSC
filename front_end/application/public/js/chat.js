@@ -14,7 +14,7 @@ function get_client() {
     socket.send(JSON.stringify(message));
 };
 
-socket = new WebSocket('ws://localhost:8081');
+socket = new WebSocket('wss://77.81.177.191/wss');
 
 socket.onmessage = function(e) {
     let response = JSON.parse(e.data);
@@ -71,5 +71,5 @@ function sendMsg() {
 }
 
 socket.onopen = function(e) {
-    get_client();
+    document.getElementById("getclient").addEventListener("click", get_client);
 }

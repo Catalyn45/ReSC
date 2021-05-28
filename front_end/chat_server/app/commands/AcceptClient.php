@@ -1,16 +1,28 @@
 <?php
-class AcceptClient implements Command {
+namespace MyApp\commands;
+use MyApp\Command;
+
+class AcceptClient extends Command {
+    public function __construct() {
+        parent::__construct($_SERVER["SCRIPT_FILENAME"]);
+    }
+
     public function getAuth() {
         return "ADMIN";
     }
 
     public function run($msg, $client, $clients) {
-        $admin = Admin::getByToken($msg["token"], $msg["server_id"]);
-        echo $admin->id;
-        $client_db = Client::updateAccept($admin->id, $msg["server_id"]);
+        $this->logger->log_info("Command called");
+        $admin = \Admin::getByToken($msg["token"], $msg["server_id"]);
+        $client_db = \Client::updateAccept($admin->id, $msg["server_id"]);
         
         if(is_null($client_db)) {
-            $client->socket->close();
+            $message = [
+                "response_type" => "nothing",
+                "message" => "No clients waiting"
+            ];
+            
+            $client->socket->send(json_encode($message));
             return;
         }
 

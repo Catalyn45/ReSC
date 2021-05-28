@@ -1,5 +1,10 @@
 <?php
-class ClientMessage implements Command {
+namespace MyApp\commands;
+use MyApp\Command;
+class ClientMessage extends Command {
+    public function __construct() {
+        parent::__construct($_SERVER["SCRIPT_FILENAME"]);
+    }
     public function getAuth() {
         return "USER";
     }
@@ -11,7 +16,7 @@ class ClientMessage implements Command {
             return;
         }
 
-        $sender = Client::find($client->id);
+        $sender = \Client::find($client->id);
         echo $sender->admin_id;
 
         foreach ( $clients as $receiver ) {
@@ -21,7 +26,7 @@ class ClientMessage implements Command {
 
             if($receiver->id == $sender->admin_id) {
                 echo "am gasit adminul\n";
-                $admin = Admin::find($receiver->id);
+                $admin = \Admin::find($receiver->id);
 
                 if($sender->waiting == true) {
                     $client->socket->close();

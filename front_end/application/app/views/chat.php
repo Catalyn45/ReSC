@@ -12,6 +12,9 @@
                 <p>Abel</p>
                 <button>❌</button>
             </div>
+            <div id ="getclient" class="chat_container__chats__element">
+                <p>Get client</p>
+            </div>
         </div>
         <div id="chat_container__conversation">
             <div id="chat_container__conversation__header">

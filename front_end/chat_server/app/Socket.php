@@ -4,12 +4,19 @@ namespace MyApp;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use MyApp\utils\Logger;
+
+global $logger;
+$logger = new Logger($_SERVER["SCRIPT_FILENAME"]);
 
 function validAuthority($authority, $token, $server_id, $client) {
+    global $logger;
     if($authority == 'USER') {
         $token = \Key::getToken($token, $server_id);
-        if(is_null($token))
+        if(is_null($token)) {
+            $logger->log_info("Client token not found");
             return false;
+        }
 
         return true;
     }
@@ -18,15 +25,62 @@ function validAuthority($authority, $token, $server_id, $client) {
         $token = \Admin::GetByToken($token, $server_id);
 
         if(is_null($token)) {
-            log_info("n-am gasit");
+            $logger->log_info("Admin token not found");
             return false;
         }
         $client->id = $token->id;
-        echo $client->id;
+        $client->isAdmin = true;
+
+        $logger->log_info("client connected: {$client->id}");
         return true;
     }
 
     return false;
+}
+
+function admin_disconnect($clients, $admin) {
+    foreach($clients as $client) {
+        if($client->isAdmin)
+            continue;
+
+        $client_db = \Client::find($client->id);
+
+        if(is_null($client_db))
+            continue;
+
+        if(!$client_db->waiting && $client_db->admin_id == $admin->id) {
+            $client->socket->send(json_encode([
+                    "response_type" => "disconnected",
+                    "message" => "Admin disconnected"
+                ]));
+
+            \Client::destroy($client_db->id);
+            $client->socket->close();
+        }
+    }
+}
+
+function client_disconnect($clients, $disconnecting_client) {
+    $client_db = \Client::find($disconnecting_client->id);
+
+    if(is_null($client_db))
+        return;
+
+    if(!$client_db->waiting) {
+        foreach($clients as $client) {
+            if($client->id != $client_db->admin_id)
+                continue;
+            
+            $client->socket->send(json_encode([
+                "response_type" => "disconnect",
+                "message" => "Client disconnected"
+            ]));
+
+            break;
+        }
+    }
+
+    \Client::destroy($client_db->id);
 }
 
 class ConnectionInfo {
@@ -41,21 +95,19 @@ class ConnectionInfo {
     public $id;
 }
 
-function log_info($msg) {
-    $now = new \DateTime();
-    echo '[' . $now->format('Y-m-d H:i:s') . "][INFO]{$msg}\n" ;
-}
-
 class Socket implements MessageComponentInterface {
+    private $logger;
 
     public function __construct()
     {
+        global $logger;
         $this->clients = new \SplObjectStorage;
+        $this->logger = $logger;
     }
 
     public function onOpen(ConnectionInterface $conn) {
         $this->clients->attach(new ConnectionInfo($conn));
-        log_info("New connection! ({$conn->resourceId})");
+        $this->logger->log_info("New connection! ({$conn->resourceId})");
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
@@ -80,14 +132,14 @@ class Socket implements MessageComponentInterface {
                     return;
                 }
 
-                $command_text = '\\' . $msg["method"];
+                $command_text = 'MyApp\\commands\\' . $msg["method"];
 
-                if(!in_array("Command", class_implements($command_text))) {
+                $command = new $command_text;
+
+                if(!$command instanceof Command) {
                     $client->close();
                     return;
                 }
-
-                $command = new $command_text;
 
                 if(!validAuthority($command->getAuth(), $msg["token"], $msg["server_id"], $client_info)) {
                     $client->close();
@@ -101,13 +153,16 @@ class Socket implements MessageComponentInterface {
     }
 
     public function onClose(ConnectionInterface $conn) {
-        log_info('disconnect');
+        $this->logger->log_info('disconnect');
         foreach($this->clients as $client) {
             if($conn->resourceId == $client->socket->resourceId) {
                 $this->clients->detach($client);
 
-                if($client->id != -1) {
-                    \Client::destroy($client->id);
+                if($client->isAdmin) {
+                    admin_disconnect($this->clients, $client);
+                }
+                else if($client->id != -1) {
+                    client_disconnect($this->clients, $client);
                 }
                 return;
             }

@@ -19,10 +19,12 @@ class Client extends Eloquent {
         $client = Client::where('server_id', $server_id)
                         ->whereWaiting(true)->first();
 
+        if(!is_null($client)) {
         $client->update([
                     "admin_id" => $admin_id,
                     "waiting" => false
                 ]);
+        }
 
         return $client;
     }

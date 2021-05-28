@@ -8,9 +8,7 @@
     },
     "autoload": {
         "classmap": [
-            "front_end/application/app/models/",
-            "front_end/chat_server/app/commands/",
-            "front_end/chat_server/app/"
+            "front_end/application/app/models/"
         ],
         "psr-4": {
             "MyApp\\": "front_end/chat_server/app"

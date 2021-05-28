@@ -1,10 +1,17 @@
 <?php
-class AdminMessage implements Command {
+namespace MyApp\commands;
+use MyApp\Command;
+class AdminMessage extends Command {
+    public function __construct() {
+        parent::__construct($_SERVER["SCRIPT_FILENAME"]);
+    }
+
     public function getAuth() {
         return "ADMIN";
     }
 
     public function run($msg, $client, $clients) {
+        $this->logger->log_info("Command called");
         if(!isset($msg["client_id"])) {
             $client->socket->close();
             return;
@@ -20,8 +27,8 @@ class AdminMessage implements Command {
                 continue;
             
             if($receiver->id == $msg["client_id"]) {
-                $admin = Admin::find($client->id);
-                $client_receiver = Client::find($receiver->id);
+                $admin = \Admin::find($client->id);
+                $client_receiver = \Client::find($receiver->id);
 
                 if($client_receiver->waiting == true) {
                     $client->socket->close();

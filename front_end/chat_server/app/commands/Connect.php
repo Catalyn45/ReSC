@@ -1,12 +1,16 @@
 <?php
-
-class Connect implements Command {
+namespace MyApp\commands;
+use MyApp\Command;
+class Connect extends Command {
+    public function __construct() {
+        parent::__construct($_SERVER["SCRIPT_FILENAME"]);
+    }
     public function getAuth() {
         return "USER";
     }
 
     public function run($msg, $client, $clients) {
-        $db_client = Client::create([
+        $db_client = \Client::create([
             "name" => $msg["name"],
             "server_id" => $msg["server_id"],
             "waiting" => true

@@ -15,7 +15,7 @@ class Chat {
         this.chat = document.getElementById('chat');
         this.content.scrollBy(0, this.content.scrollHeight);
 
-        this.socket = new WebSocket('ws://localhost:8081');
+        this.socket = new WebSocket('wss://77.81.177.191/wss');
         let stranger_callback = this.strangerMsg.bind(this);
         let me_callback = this.sendMsg.bind(this);
 
@@ -27,7 +27,6 @@ class Chat {
                     me_callback();
                 });
                 stranger_callback(`<i>${result.name} s-a conectat. Puteti incepe conversatia </i>`);
-                document.getElementById("admin_name").innerHTML = result.name;
             } else if (result.response_type != "success") {
                 stranger_callback(result.message);
             }
@@ -109,6 +108,35 @@ class Chat {
     }
 }
 
-//3152_insert_here
+
+var htmlRaw = `
+<div id="chat">
+        <div id="chat__menubar">
+            <div id="chat__menubar__person">
+                <p class="menubar__element" id="available"></p>
+                <img class="menubar__element" src="https://catalyn45.github.io/ReSC/front_end/experimental/icons/diana.jpg" alt="Person" srcset="">
+                <p class="menubar__element">Diana</p>
+            </div>
+
+            <div id="chat__menubar__buttons">
+                <button id="hide_button" onclick="chat.hideContent()">➖</button>
+                <button id="close_button" onclick="chat.closeCallback()">❌</button>
+            </div>
+        </div>
+
+        <div id="chat__content">
+        </div>
+
+        <div id="chat__inputbar">
+            <form id="chat__form" autocomplete="off">
+                <input type="textarea" name="message" id="input_message" placeholder="Type a message...">
+                <input type="submit" id="send_message" value="send">
+            </form>
+        </div>
+    </div>
+`
+document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="https://catalyn45.github.io/ReSC/front_end/experimental/assets/css/style.css"/>');
+document.body.insertAdjacentHTML("beforeend", htmlRaw);
+
 
 var chat = new Chat();
