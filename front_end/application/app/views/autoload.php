@@ -15,7 +15,8 @@ class Chat {
         this.chat = document.getElementById('chat');
         this.content.scrollBy(0, this.content.scrollHeight);
 
-        this.socket = new WebSocket('wss://77.81.177.191/wss');
+        this.socket = null;
+        this.startCallback();
         let stranger_callback = this.strangerMsg.bind(this);
         let me_callback = this.sendMsg.bind(this);
 
@@ -26,6 +27,8 @@ class Chat {
                     e.preventDefault();
                     me_callback();
                 });
+                document.getElementById("input_message").disabled = false;
+                document.getElementById("send_message").disabled = false;
                 stranger_callback(`<i>${result.name} s-a conectat. Puteti incepe conversatia </i>`);
             } else if (result.response_type != "success") {
                 stranger_callback(result.message);
@@ -81,7 +84,7 @@ class Chat {
 
     hideContent() {
         if (this.isHidden) {
-            this.content.style.display = 'block';
+            this.content.style.display = 'flex';
             this.inputbar.style.display = 'block';
             this.minimize.innerHTML = '➖';
         } else {
@@ -102,8 +105,16 @@ class Chat {
     }
 
     closeCallback() {
+        this.socket.close();
         if (typeof onChatClose !== "undefined") {
             onChatClose();
+        }
+    }
+
+    startCallback() {
+        this.socket = new WebSocket('wss://localhost/wss');
+        if (typeof onChatStart !== "undefined") {
+            onChatStart();
         }
     }
 }
@@ -129,13 +140,13 @@ var htmlRaw = `
 
         <div id="chat__inputbar">
             <form id="chat__form" autocomplete="off">
-                <input type="textarea" name="message" id="input_message" placeholder="Type a message...">
-                <input type="submit" id="send_message" value="send">
+                <input type="textarea" name="message" id="input_message" placeholder="Type a message..." disabled>
+                <input type="submit" id="send_message" value="send" disabled>
             </form>
         </div>
     </div>
 `
-document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="https://catalyn45.github.io/ReSC/front_end/experimental/assets/css/style.css"/>');
+document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="/chatloadercss"/>');
 document.body.insertAdjacentHTML("beforeend", htmlRaw);
 
 

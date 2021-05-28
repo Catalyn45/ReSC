@@ -14,7 +14,7 @@ function get_client() {
     socket.send(JSON.stringify(message));
 };
 
-socket = new WebSocket('wss://77.81.177.191/wss');
+socket = new WebSocket('wss://localhost/wss');
 
 socket.onmessage = function(e) {
     let response = JSON.parse(e.data);
