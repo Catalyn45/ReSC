@@ -27,7 +27,7 @@ class Admin extends Eloquent {
         return Admin::whereName($name)->update(["token" => $token]);
     }
 
-    public static function GetByToken($token, $server_id) {
-        return Admin::whereToken($token)->where('server_id', $server_id)->first();
+    public static function getByToken($token) {
+        return Admin::whereToken($token)->first();
     }
 }

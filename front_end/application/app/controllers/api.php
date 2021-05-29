@@ -26,7 +26,6 @@ class Api {
             $request_methods = [];
             
         $params_to_pass = [];
-
         foreach($required_params as $key => $value) {
             if(!isset($request_methods[$key])) {
                 if($value['mandatory']) {

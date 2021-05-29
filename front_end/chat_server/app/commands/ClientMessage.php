@@ -10,14 +10,14 @@ class ClientMessage extends Command {
     }
 
     public function run($msg, $client, $clients) {
-        echo "am intrat in client message\n";
+        $this->logger->log_info("am intrat in client message\n");
         if(!isset($msg["message"])) {
             $client->close();
             return;
         }
 
         $sender = \Client::find($client->id);
-        echo $sender->admin_id;
+        $this->logger->log_info($sender->admin_id);
 
         foreach ( $clients as $receiver ) {
             echo $receiver->id;
@@ -25,7 +25,7 @@ class ClientMessage extends Command {
                 continue;
 
             if($receiver->id == $sender->admin_id) {
-                echo "am gasit adminul\n";
+                $this->logger->log_info("am gasit adminul\n");
                 $admin = \Admin::find($receiver->id);
 
                 if($sender->waiting == true) {
@@ -36,8 +36,15 @@ class ClientMessage extends Command {
                 $message = [
                     "reponse_type" => "message",
                     "client_id" => $sender->id,
-                    "message" => $msg["message"]
+                    "message" => $msg["message"],
+                    "conversation_id" => $sender->conversation_id
                 ];
+
+                \Message::create([
+                    "sender" => "client",
+                    "conversation_id" => $sender->conversation_id,
+                    "message" => $msg["message"]
+                ]);
 
                 $receiver->socket->send(json_encode($message));
                 $client->socket->send(json_encode(["response_type" =>"success"]));

@@ -27,6 +27,7 @@ class AdminMessage extends Command {
                 continue;
             
             if($receiver->id == $msg["client_id"]) {
+                $this->logger->log_info("Am gasssssit clientul");
                 $admin = \Admin::find($client->id);
                 $client_receiver = \Client::find($receiver->id);
 
@@ -34,6 +35,8 @@ class AdminMessage extends Command {
                     $client->socket->close();
                     return;
                 }
+
+                $this->logger->log_info("");
 
                 if($client_receiver->admin_id != $admin->id) {
                     $client->socket->close();
@@ -44,6 +47,16 @@ class AdminMessage extends Command {
                     "response_type" => "message",
                     "message" => $msg["message"]
                 ];
+
+                $this->logger->log_info("inainte de create " . $client_receiver->conversation_id);
+
+                $m = \Message::create([
+                    "sender" => "admin",
+                    "conversation_id" => $client_receiver->conversation_id,
+                    "message" => $msg["message"]
+                ]);
+
+                $this->logger->log_info("dupa de create");
 
                 $receiver->socket->send(json_encode($message));
                 $client->socket->send(json_encode(["response_type" => "success"]));

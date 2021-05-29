@@ -8,7 +8,7 @@ Chat
     #chat {
         width: 20em;
         background-color: rgb(162, 186, 250);
-        display: inline-block;
+        display: none;
         position: fixed;
         right: 0;
         bottom: 0;
@@ -37,6 +37,7 @@ Chat menu
     }
     
     #chat__menubar__person img {
+        display: none;
         width: 2em;
         height: 2em;
         border-radius: 50%;
@@ -57,10 +58,14 @@ Chat menu
         margin-left: 0.7em;
     }
     
+     :root {
+        --color: red;
+    }
+    
     #available:before {
         content: "\2022";
         font-size: 2em;
-        color: green;
+        color: var(--color);
     }
     
     #chat__menubar__buttons button {
@@ -100,8 +105,7 @@ Chat content
         display: inline-block;
         width: 10em;
         border-radius: 5%;
-        padding-right: 1em;
-        padding-left: 1em;
+        padding: 1em;
         overflow-wrap: break-word;
         margin-top: 1em;
         margin-left: 1em;
@@ -113,8 +117,7 @@ Chat content
         display: inline-block;
         width: 10em;
         border-radius: 5%;
-        padding-right: 1em;
-        padding-left: 1em;
+        padding: 1em;
         overflow-wrap: break-word;
         margin-top: 1em;
         margin-right: 1em;
@@ -139,6 +142,7 @@ Input bar from bellow
         box-sizing: border-box;
         width: 15em;
         height: 2.6em;
+        padding-left: 1em;
     }
     
     #send_message {

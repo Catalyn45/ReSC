@@ -17,3 +17,4 @@
     </div>
     <button class="submit_button" id="try_demo" onclick="load_chat()">Try a demo</button>
 </main>
+<script src="/chatloader"></script>

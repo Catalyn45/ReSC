@@ -6,11 +6,11 @@ class Client extends Eloquent {
     protected $table = 'clients';
 
     protected $fillable = [
-        "id",
         "name",
         "server_id",
         "waiting",
-        "admin_id"
+        "admin_id",
+        "conversation_id"
     ];
 
     public $timestamps = [];
@@ -20,12 +20,12 @@ class Client extends Eloquent {
                         ->whereWaiting(true)->first();
 
         if(!is_null($client)) {
-        $client->update([
+            $client->update([
                     "admin_id" => $admin_id,
                     "waiting" => false
                 ]);
         }
-
+        
         return $client;
     }
 }

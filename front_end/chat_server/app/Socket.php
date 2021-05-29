@@ -22,13 +22,13 @@ function validAuthority($authority, $token, $server_id, $client) {
     }
 
     if($authority == 'ADMIN') {
-        $token = \Admin::GetByToken($token, $server_id);
+        $admin = \Admin::getByToken($token);
 
-        if(is_null($token)) {
+        if(is_null($admin)) {
             $logger->log_info("Admin token not found");
             return false;
         }
-        $client->id = $token->id;
+        $client->id = $admin->id;
         $client->isAdmin = true;
 
         $logger->log_info("client connected: {$client->id}");
@@ -72,8 +72,10 @@ function client_disconnect($clients, $disconnecting_client) {
                 continue;
             
             $client->socket->send(json_encode([
-                "response_type" => "disconnect",
-                "message" => "Client disconnected"
+                "response_type" => "disconnected",
+                "message" => "Client disconnected",
+                "conversation_id" => $client_db->conversation_id,
+                "client_id" => $client_db->id
             ]));
 
             break;

@@ -1,26 +1,40 @@
-function onChatClose() {
-    chat.hide();
-    document.getElementById("try_demo").style.display = 'inline-block';
-}
+var names = [
+    "ana",
+    "adrian",
+    "bogdana",
+    "maria",
+    "elena",
+    "anastasia",
+    "corina",
+    "paul",
+    "alberto",
+    "sorin",
+    "adrian",
+    "marian",
+    "alex",
+    "eusebiu",
+    "stefan",
+    "stefania"
+];
 
-var loaded = false;
+var nume = names[Math.round((Math.random() * 100) % names.length)];
 
-var start_chat = null;
+chat.setConfigs("1234", 1, nume);
+
+let isShowing = false;
 
 function load_chat() {
-
-    if (loaded) {
-        if (start_chat != null)
-            start_chat();
-
-        chat.show();
-        return;
+    if (!isShowing) {
+        document.getElementById("try_demo").style.display = 'none';
+        chat.show()
+        chat.startConnection();
+        isShowing = true;
     }
+}
 
-    document.getElementById("try_demo").style.display = 'none';
-    let script = document.createElement("script");
-    var htmlRaw = '/chatloader';
-    script.src = htmlRaw;
-    document.body.appendChild(script);
-    loaded = true;
+chat.onChatClose = function() {
+    document.getElementById("try_demo").style.display = 'inline-block';
+    this.stopConnection();
+    this.hide();
+    isShowing = false;
 }
