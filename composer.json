@@ -1,0 +1,17 @@
+{
+    "require": {
+        "php": "^7.2.0",
+        "cboden/ratchet": "^0.4.3",
+        "illuminate/database": "4.2.*",
+        "kylekatarnls/laravel-carbon-2": "^1.0.0",
+        "nesbot/carbon": "2.0.0-beta.2 as 1.25.0"
+    },
+    "autoload": {
+        "classmap": [
+            "front_end/application/app/models/"
+        ],
+        "psr-4": {
+            "MyApp\\": "front_end/chat_server/app"
+        }
+    }
+}
