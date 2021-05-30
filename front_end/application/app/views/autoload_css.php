@@ -196,3 +196,7 @@ Input bar from bellow
     #chat__content::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+.emoji {
+    
+}

@@ -12,6 +12,11 @@ function safe_tags_replace(str) {
     return str.replace(/[&<>]/g, replaceTag);
 }
 
+function process_text(str) {
+    let processed = safe_tags_replace(str);
+    return processed.replaceAll(/ :([a-z]+): /g, ' <img class="emoji" src="/resources/emojis/$1.png"> ');
+}
+
 class Chat {
     constructor() {
         this.isHidden = false;
@@ -56,7 +61,7 @@ class Chat {
     startConnection() {
         let stranger_callback = this.strangerMsg.bind(this);
         var me_callback = this.sendMsg.bind(this);
-        
+
         // here needs to be the actual host url
         this.socket = new WebSocket(`wss://${window.location.host}/wss`);
         this.socket.onmessage = function(e) {
@@ -92,7 +97,7 @@ class Chat {
             console.log(message);
 
             this.socket.send(JSON.stringify(message));
-            stranger_callback("Asteptati pana cand se conecteaza un administrator");
+            stranger_callback("Asteptati pana cand se :danger: conecteaza un administrator");
         }.bind(this);
 
         this.socket.onclose = function(e) {
@@ -112,7 +117,7 @@ class Chat {
 
         const sendMessage = `
             <div class="chat__content__me">
-                <p>${safe_tags_replace(this.input.value)}</p>
+                <p>${process_text(this.input.value)}</p>
             </div>
         `;
 
@@ -131,7 +136,7 @@ class Chat {
     }
 
     strangerMsg(message) {
-        message = safe_tags_replace(message);
+        message = process_text(message);
         const backMessage = `
             <div class="chat__content__stranger">
                 <p>${message}</p>
