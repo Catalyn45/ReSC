@@ -28,4 +28,8 @@ class Client extends Eloquent {
         
         return $client;
     }
+
+    public static function getWaitingCount($server_id) {
+        return self::where("server_id", $server_id)->whereWaiting(true)->count();
+    }
 }

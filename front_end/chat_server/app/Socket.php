@@ -23,7 +23,7 @@ function validAuthority($authority, $token, $server_id, $client) {
 
     if($authority == 'ADMIN') {
         $admin = \Admin::getByToken($token);
-
+        $logger->log_info("admin conectat cu success");
         if(is_null($admin)) {
             $logger->log_info("Admin token not found");
             return false;
@@ -61,6 +61,7 @@ function admin_disconnect($clients, $admin) {
 }
 
 function client_disconnect($clients, $disconnecting_client) {
+    global $logger;
     $client_db = \Client::find($disconnecting_client->id);
 
     if(is_null($client_db))
@@ -79,6 +80,23 @@ function client_disconnect($clients, $disconnecting_client) {
             ]));
 
             break;
+        }
+    } else {
+        $admin = \Admin::getByServerId($client_db->server_id);
+        $logger->log_info("am gasit admin sa-i trimit disconnect {$admin->id}");
+        if(!is_null($admin)) {
+            foreach($clients as $client) {
+                if(!$client->isAdmin)
+                    continue;
+
+                if($client->id == $admin->id) {
+                    $logger->log_info("ii trimit acm la admin");
+                    $client->socket->send(json_encode([
+                        "response_type" => "client_stop_waiting"
+                    ]));
+                    break;
+                }
+            }
         }
     }
 

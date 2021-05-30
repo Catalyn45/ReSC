@@ -5,6 +5,7 @@ class Connect extends Command {
     public function __construct() {
         parent::__construct($_SERVER["SCRIPT_FILENAME"]);
     }
+
     public function getAuth() {
         return "USER";
     }
@@ -19,6 +20,22 @@ class Connect extends Command {
         if(is_null($db_client)) {
             $client->socket->close();
             return;
+        }
+
+        $admin_db = \Admin::getByServerId($msg["server_id"]);
+
+        if(!is_null($admin_db)) {
+            foreach($clients as $admin) {
+                if(!$admin->isAdmin)
+                    continue;
+
+                if($admin->id == $admin_db->id) {
+                    $admin->socket->send(json_encode([
+                        "response_type" => "client_start_waiting"
+                    ]));
+                    break;
+                }
+            }
         }
 
         $client->id = $db_client->id;

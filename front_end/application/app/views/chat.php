@@ -2,6 +2,7 @@
         <div id="chat_container__chats">
             <button id ="getclient" class="chat_container__chats__element" onclick="get_client()">
                 <p>Get client</p>
+                <span class="notification" id="clients_waiting">0</span>
             </button>
         </div>
         <div id="chat_container__conversation">

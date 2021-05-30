@@ -14,7 +14,7 @@ function safe_tags_replace(str) {
 
 function process_text(str) {
     let processed = safe_tags_replace(str);
-    return processed.replaceAll(/ :([a-z]+): /g, ' <img class="emoji" src="/resources/emojis/$1.png"> ');
+    return processed.replaceAll(/(^| ):([a-z]+):( |$)/g, '$1<img class="emoji" src="/resources/emojis/$2.png" onerror="this.src=\'resources/emojis/fire.png\'">$3');
 }
 
 class Chat {
@@ -97,7 +97,7 @@ class Chat {
             console.log(message);
 
             this.socket.send(JSON.stringify(message));
-            stranger_callback("Asteptati pana cand se :danger: conecteaza un administrator");
+            stranger_callback("Asteptati pana cand se conecteaza un administrator :danger:");
         }.bind(this);
 
         this.socket.onclose = function(e) {

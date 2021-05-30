@@ -29,8 +29,9 @@ function change_func(t) {
     lastclicked.style.background = t.value;
 }
 
-function get_saved_configuration() {
-    fetch("/api/get_configuration", { credentials: "same-origin" })
+function get_saved_configuration(default_config = false) {
+    url = "/api/get_" + (default_config ? "default_configuration" : "configuration");
+    fetch(url, { credentials: "same-origin" })
         .then(response => response.json())
         .then(data => {
             console.log(data);

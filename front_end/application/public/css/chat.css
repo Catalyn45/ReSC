@@ -204,6 +204,7 @@ hr {
     box-sizing: border-box;
     width: 40em;
     height: 3em;
+    padding-left: 1em;
 }
 
 
@@ -286,4 +287,9 @@ hr {
 
 .chat__current {
     background-color: green !important;
+}
+
+.emoji {
+    width: 20px;
+    height: 20px;
 }

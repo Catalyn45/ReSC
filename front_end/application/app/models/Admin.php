@@ -30,4 +30,8 @@ class Admin extends Eloquent {
     public static function getByToken($token) {
         return Admin::whereToken($token)->first();
     }
+
+    public static function getByServerId($server_id) {
+        return self::where("server_id", $server_id)->first();
+    }
 }

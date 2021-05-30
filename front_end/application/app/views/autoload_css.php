@@ -7,31 +7,28 @@ Chat
     
     #chat {
         width: 20em;
-        background-color: <?php echo '#' . $data->chatcolor_mid?> ;
+        background-color: <?php echo '#' . $data->chatcolor_mid?>;
         display: none;
         position: fixed;
-        <?php
-            $vertical_pos = "top";
-            $vertical_value = "0";
-            if($data->chatposition_line == 1) {
-                $vertical_value = "25%";
-            } else if($data->chatposition_line > 1) {
-                $vertical_pos = "bottom";
-            }
-
-            $orisontal_pos = "left";
-            $orisontal_value = "0";
-            if($data->chatposition_column == 1) {
-                $orisontal_value = "40%";
-            } else if($data->chatposition_column > 1) {
-                $orisontal_pos = "right";
-            }
-
-            echo $vertical_pos . ' : ' . $vertical_value . ';';
-            echo $orisontal_pos . ' : ' . $orisontal_value . ';';
-
-        ?>
-        margin-right: 1.5em;
+        <?php $vertical_pos="top";
+        $vertical_value="0";
+        if($data->chatposition_line==1) {
+            $vertical_value="25%";
+        }
+        else if($data->chatposition_line > 1) {
+            $vertical_pos="bottom";
+        }
+        $orisontal_pos="left";
+        $orisontal_value="0";
+        if($data->chatposition_column==1) {
+            $orisontal_value="40%";
+        }
+        else if($data->chatposition_column > 1) {
+            $orisontal_pos="right";
+        }
+        echo $vertical_pos . ' : ' . $vertical_value . ';';
+        echo $orisontal_pos . ' : ' . $orisontal_value . ';';
+        ?>margin-right: 1.5em;
         margin-bottom: 1em;
         border-radius: 5%;
         overflow: hidden;
@@ -45,7 +42,7 @@ Chat menu
         flex-direction: row;
         justify-content: space-between;
         font-family: sans-serif;
-        background-color: <?php echo '#' . $data->chatcolor_top?> ;
+        background-color: <?php echo '#' . $data->chatcolor_top?>;
     }
     
     #chat__menubar__person {
@@ -120,7 +117,7 @@ Chat content
     
     .chat__content__stranger {
         align-self: flex-start;
-        background-color: <?php echo '#' . $data->chatcolor_stranger?> ;
+        background-color: <?php echo '#' . $data->chatcolor_stranger?>;
         display: inline-block;
         width: 10em;
         border-radius: 5%;
@@ -132,7 +129,7 @@ Chat content
     
     .chat__content__me {
         align-self: flex-end;
-        background-color: <?php echo '#' . $data->chatcolor_client?> ;
+        background-color: <?php echo '#' . $data->chatcolor_client?>;
         display: inline-block;
         width: 10em;
         border-radius: 5%;
@@ -162,7 +159,7 @@ Input bar from bellow
         width: 15em;
         height: 2.6em;
         padding-left: 1em;
-        background-color: <?php echo '#' . $data->chatcolor_input?> ;
+        background-color: <?php echo '#' . $data->chatcolor_input?>;
         color: black;
     }
     
@@ -175,7 +172,7 @@ Input bar from bellow
         height: 2.6em;
         width: 3.5em;
         font-weight: bold;
-        background-color: <?php echo '#' . $data->chatcolor_button?> ;
+        background-color: <?php echo '#' . $data->chatcolor_button?>;
     }
     /*
     Scroll atributes
@@ -196,7 +193,8 @@ Input bar from bellow
     #chat__content::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
-
-.emoji {
     
-}
+    .emoji {
+        width: 20px;
+        height: 20px;
+    }

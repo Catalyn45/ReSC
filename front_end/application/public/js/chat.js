@@ -20,6 +20,11 @@ function safe_tags_replace(str) {
     return str.replace(/[&<>]/g, replaceTag);
 }
 
+function process_text(str) {
+    let processed = safe_tags_replace(str);
+    return processed.replaceAll(/(^| ):([a-z]+):( |$)/g, '$1<img class="emoji" src="/resources/emojis/$2.png" onerror="this.src=\'resources/emojis/fire.png\'">$3');
+}
+
 var blob = new Blob(["Welcome to Websparrow.org."], { type: "text/plain;charset=utf-8" });
 
 function get_client() {
@@ -32,6 +37,20 @@ function get_client() {
 
     socket.send(JSON.stringify(message));
 };
+
+function get_waiting_count() {
+    fetch(`/api/get_waiting_clients`, { credentials: "same-origin" })
+        .then(response => response.json())
+        .then(data => {
+            let nr = data.response;
+
+            if (nr > 0) {
+                let notif = document.getElementById('clients_waiting');
+                notif.style.visibility = "visible";
+                notif.innerHTML = nr;
+            }
+        });
+}
 
 function save_conv() {
     fetch(`/api/get_messages?conversation_id=${current_connection.conversation_id}`, { credentials: "same-origin" })
@@ -100,8 +119,9 @@ function addClientBar(client_id, clientName, conversation_id) {
         let elems = document.getElementsByClassName("chat_container__chats__element");
 
         for (i = 0; i < elems.length; i++) {
-            if (elems[i].classList.contains("chat__current"))
+            if (elems[i].classList.contains("chat__current")) {
                 elems[i].classList.remove("chat__current");
+            }
         }
 
         this.classList.add("chat__current");
@@ -145,11 +165,31 @@ function addClientBar(client_id, clientName, conversation_id) {
 
 socket = new WebSocket(`wss://${window.location.host}/wss`);
 
+socket.onopen = function(e) {
+    get_waiting_count();
+    socket.send(JSON.stringify({
+        method: "ConnectAdmin",
+        authority: "ADMIN",
+        token: token,
+        server_id: 3
+    }));
+}
+
 socket.onmessage = function(e) {
     console.log(e.data);
     let response = JSON.parse(e.data);
     console.log(response.response_type);
     if (response.response_type == "got_client") {
+        let notif = document.getElementById('clients_waiting');
+        let nr = parseInt(notif.innerHTML);
+
+        if (nr > 0) {
+            notif.innerHTML = nr - 1;
+            if (nr - 1 == 0) {
+                notif.style.visibility = "hidden";
+            }
+        }
+
         addClientBar(response.client_id, response.client_name, response.conversation_id);
     } else if (response.response_type == "message") {
         console.log("message");
@@ -173,13 +213,26 @@ socket.onmessage = function(e) {
         let client_container = document.getElementById(`chat_conversation_${response.conversation_id}`);
         client_container.classList.add("chat__disconnected");
         console.log(client_container);
+    } else if (response.response_type == "client_start_waiting") {
+        let notif = document.getElementById('clients_waiting');
+        notif.style.visibility = "visible";
+        let nr = parseInt(notif.innerHTML);
+        notif.innerHTML = nr + 1;
+    } else if (response.response_type == "client_stop_waiting") {
+        let notif = document.getElementById('clients_waiting');
+        let nr = parseInt(notif.innerHTML);
+        notif.innerHTML = nr - 1;
+
+        if (nr - 1 == 0) {
+            notif.style.visibility = "hidden";
+        }
     }
 
     console.log(response);
 }
 
 function strangerMsg(message) {
-    message = safe_tags_replace(message);
+    message = process_text(message);
     const backMessage = `
     <div class="message message_stranger">
         <p>${message}</p>
@@ -191,7 +244,7 @@ function strangerMsg(message) {
 }
 
 function meMsg(message) {
-    message = safe_tags_replace(message);
+    message = process_text(message);
     let content = document.getElementById('chat_container__conversation__content');
     const sendMessage = `
     <div class="message message_me">

@@ -79,7 +79,7 @@
         </div>
         <div id="buttons">
             <button class="submit_button" onclick="send_configuration()">Save</button>
-            <button class="submit_button">Default</button>
+            <button class="submit_button" onclick="get_saved_configuration(true)">Default</button>
         </div>
     </div>
 </main>
