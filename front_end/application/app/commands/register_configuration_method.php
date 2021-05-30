@@ -1,6 +1,6 @@
 <?php
 
-class Register_Configuration_Method extends PutMethod {
+class Register_Configuration_Method extends PostMethod {
     public function __construct() {
         parent::__construct($need_auth=true);
     }
@@ -28,12 +28,6 @@ class Register_Configuration_Method extends PutMethod {
             'mandatory' => true
         ],
         'chatposition_column' => [
-            'mandatory' => true
-        ],
-        'callback_close' => [
-            'mandatory' => true
-        ],
-        'callback_hide' => [
             'mandatory' => true
         ],
         'class_name' => [

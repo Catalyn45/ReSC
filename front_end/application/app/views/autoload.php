@@ -56,8 +56,9 @@ class Chat {
     startConnection() {
         let stranger_callback = this.strangerMsg.bind(this);
         var me_callback = this.sendMsg.bind(this);
-
-        this.socket = new WebSocket("wss://localhost/wss");
+        
+        // here needs to be the actual host url
+        this.socket = new WebSocket(`wss://${window.location.host}/wss`);
         this.socket.onmessage = function(e) {
             let result = JSON.parse(e.data);
             if (result.response_type == "accepted") {
@@ -119,7 +120,7 @@ class Chat {
             method: "ClientMessage",
             authority: "USER",
             token: "1234",
-            server_id: 1,
+            server_id: this.serverId,
             message: this.input.value
         }));
 
@@ -200,8 +201,12 @@ var htmlRaw = `
         </div>
     </div>
 `;
+<?php
+    echo 'document.head.insertAdjacentHTML("beforeend", \'<link rel="stylesheet" type="text/css" href="/chatloadercss?server_id=' . $_GET["server_id"] . '"/>\');';
+?>
 
-document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="/chatloadercss"/>');
 document.body.insertAdjacentHTML("beforeend", htmlRaw);
 
-var chat = new Chat();
+<?php
+    echo 'var '. $data->object_name . '= new ' . $data->class_name . '();';
+?>

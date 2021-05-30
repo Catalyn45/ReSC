@@ -29,19 +29,10 @@ class Update_Configuration_Method extends PatchMethod {
         'chatposition_column' => [
             'mandatory' => false
         ],
-        'callback_close' => [
-            'mandatory' => false
-        ],
-        'callback_hide' => [
-            'mandatory' => false
-        ],
         'class_name' => [
             'mandatory' => false
         ],
         'object_name' => [
-            'mandatory' => false
-        ],
-        'host' => [
             'mandatory' => false
         ]
     ];

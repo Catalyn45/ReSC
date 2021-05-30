@@ -283,3 +283,7 @@ hr {
 .chat__disconnected {
     background-color: red !important;
 }
+
+.chat__current {
+    background-color: green !important;
+}

@@ -17,9 +17,9 @@ var names = [
     "stefania"
 ];
 
-var nume = names[Math.round((Math.random() * 100) % names.length)];
+var nume = names[Math.round(Math.random() * 100) % names.length];
 
-chat.setConfigs("1234", 1, nume);
+chat.setConfigs("1234", 3, nume);
 
 let isShowing = false;
 

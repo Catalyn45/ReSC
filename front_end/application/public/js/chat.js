@@ -20,23 +20,48 @@ function safe_tags_replace(str) {
     return str.replace(/[&<>]/g, replaceTag);
 }
 
+var blob = new Blob(["Welcome to Websparrow.org."], { type: "text/plain;charset=utf-8" });
+
 function get_client() {
     let message = {
         method: "AcceptClient",
         authority: "ADMIN",
         token: token,
-        server_id: 1
+        server_id: 3
     };
 
     socket.send(JSON.stringify(message));
 };
+
+function save_conv() {
+    fetch(`/api/get_messages?conversation_id=${current_connection.conversation_id}`, { credentials: "same-origin" })
+        .then(response => response.json())
+        .then(data => {
+            let messages = data.response;
+            let textToSave = "";
+            for (i = 0; i < messages.length; i++) {
+                let messageSender = "";
+
+                if (messages[i].sender == "client") {
+                    messageSender = document.getElementById("client_name").innerHTML;
+                } else {
+                    messageSender = "Admin";
+                }
+
+                textToSave += `${messageSender} : ${messages[i].message}\n`;
+            }
+
+            let blob = new Blob([textToSave], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, "conversation.txt");
+        });
+}
 
 function close_client() {
     let message = {
         method: "CloseClient",
         authority: "ADMIN",
         token: token,
-        server_id: 1,
+        server_id: 3,
         client_id: current_connection.client_id
     };
 
@@ -54,12 +79,14 @@ function close_client() {
         containers[1].click();
     } else {
         document.getElementById("chat_container__conversation").style.display = "none";
+        current_connection.conversation_id = -1;
+        current_connection.client_id = -1;
     }
 }
 
 function addClientBar(client_id, clientName, conversation_id) {
-    var id = `chat_conversation_${conversation_id}`;
-    var clientBar = `
+    let id = `chat_conversation_${conversation_id}`;
+    let clientBar = `
 <div class="chat_container__chats__element" id="${id}">
     <p>${clientName}</p>
     <span class="notification" id="chat_notification_${conversation_id}">0</span>
@@ -70,12 +97,23 @@ function addClientBar(client_id, clientName, conversation_id) {
 
     document.getElementById(id).addEventListener("click", function(e) {
 
+        let elems = document.getElementsByClassName("chat_container__chats__element");
+
+        for (i = 0; i < elems.length; i++) {
+            if (elems[i].classList.contains("chat__current"))
+                elems[i].classList.remove("chat__current");
+        }
+
+        this.classList.add("chat__current");
+
         if (this.classList.contains("chat__disconnected")) {
             document.getElementById("dot").style.setProperty('--color', "red");
             document.getElementById("dot").style.setProperty('--text', '"\u2022 \u0020 disconnected"');
             document.getElementById("input_message").disabled = true;
             document.getElementById("send_message").disabled = true;
         } else {
+            document.getElementById("dot").style.setProperty('--color', "green");
+            document.getElementById("dot").style.setProperty('--text', '"\u2022 \u0020 connected"');
             document.getElementById("input_message").disabled = false;
             document.getElementById("send_message").disabled = false;
         }
@@ -92,7 +130,7 @@ function addClientBar(client_id, clientName, conversation_id) {
                 document.getElementById("chat_container__conversation__content").innerHTML = "";
                 document.getElementById("chat_container__conversation").style.display = "flex";
                 document.getElementById("client_name").innerHTML = clientName;
-                var messages = data.response;
+                let messages = data.response;
                 console.log(messages);
                 for (i = 0; i < messages.length; i++) {
                     if (messages[i].sender == "admin") {
@@ -105,17 +143,19 @@ function addClientBar(client_id, clientName, conversation_id) {
     });
 }
 
-socket = new WebSocket('wss://localhost/wss');
+socket = new WebSocket(`wss://${window.location.host}/wss`);
 
 socket.onmessage = function(e) {
     console.log(e.data);
     let response = JSON.parse(e.data);
+    console.log(response.response_type);
     if (response.response_type == "got_client") {
         addClientBar(response.client_id, response.client_name, response.conversation_id);
     } else if (response.response_type == "message") {
-        if (current_connection.client_id == response.client_id)
+        console.log("message");
+        if (current_connection.client_id == response.client_id) {
             strangerMsg(response.message);
-        else {
+        } else {
             console.log(response.conversation_id);
             let notif = document.getElementById(`chat_notification_${response.conversation_id}`);
             notif.style.visibility = "visible";
@@ -170,7 +210,7 @@ function sendMsg() {
         method: "AdminMessage",
         authority: "ADMIN",
         token: token,
-        server_id: 1,
+        server_id: 3,
         client_id: current_connection.client_id,
         message: input_text.value
     }));

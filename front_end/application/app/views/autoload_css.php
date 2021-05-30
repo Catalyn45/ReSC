@@ -7,11 +7,30 @@ Chat
     
     #chat {
         width: 20em;
-        background-color: rgb(162, 186, 250);
+        background-color: <?php echo '#' . $data->chatcolor_mid?> ;
         display: none;
         position: fixed;
-        right: 0;
-        bottom: 0;
+        <?php
+            $vertical_pos = "top";
+            $vertical_value = "0";
+            if($data->chatposition_line == 1) {
+                $vertical_value = "25%";
+            } else if($data->chatposition_line > 1) {
+                $vertical_pos = "bottom";
+            }
+
+            $orisontal_pos = "left";
+            $orisontal_value = "0";
+            if($data->chatposition_column == 1) {
+                $orisontal_value = "40%";
+            } else if($data->chatposition_column > 1) {
+                $orisontal_pos = "right";
+            }
+
+            echo $vertical_pos . ' : ' . $vertical_value . ';';
+            echo $orisontal_pos . ' : ' . $orisontal_value . ';';
+
+        ?>
         margin-right: 1.5em;
         margin-bottom: 1em;
         border-radius: 5%;
@@ -26,7 +45,7 @@ Chat menu
         flex-direction: row;
         justify-content: space-between;
         font-family: sans-serif;
-        background-color: rgb(78, 55, 182);
+        background-color: <?php echo '#' . $data->chatcolor_top?> ;
     }
     
     #chat__menubar__person {
@@ -101,7 +120,7 @@ Chat content
     
     .chat__content__stranger {
         align-self: flex-start;
-        background-color: rgb(233, 219, 219);
+        background-color: <?php echo '#' . $data->chatcolor_stranger?> ;
         display: inline-block;
         width: 10em;
         border-radius: 5%;
@@ -113,7 +132,7 @@ Chat content
     
     .chat__content__me {
         align-self: flex-end;
-        background-color: rgb(14, 154, 235);
+        background-color: <?php echo '#' . $data->chatcolor_client?> ;
         display: inline-block;
         width: 10em;
         border-radius: 5%;
@@ -143,9 +162,12 @@ Input bar from bellow
         width: 15em;
         height: 2.6em;
         padding-left: 1em;
+        background-color: <?php echo '#' . $data->chatcolor_input?> ;
+        color: black;
     }
     
     #send_message {
+        color: black;
         box-sizing: border-box;
         border: none;
         border-radius: 40%;
@@ -153,7 +175,7 @@ Input bar from bellow
         height: 2.6em;
         width: 3.5em;
         font-weight: bold;
-        color: darkred;
+        background-color: <?php echo '#' . $data->chatcolor_button?> ;
     }
     /*
     Scroll atributes

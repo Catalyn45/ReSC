@@ -13,6 +13,7 @@ class Chat extends Controller {
                 'chat'
             ],
             'scripts' => [
+                'filesaver',
                 'chat'
             ]
         ]);

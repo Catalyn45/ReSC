@@ -6,7 +6,7 @@
         </div>
         <div id="chat_container__conversation">
             <div id="chat_container__conversation__header">
-                <button> <img src="./resources/images/save.png">Save conversation</button>
+                <button onclick="save_conv()"> <img src="./resources/images/save.png">Save conversation</button>
                 <p id="client_name"><img src="/resources/images/user.png">nume</p>
                 <p id="dot"></p>
                 <button onclick="close_client()"><img src="/resources/images/close.png">Close</button>

@@ -34,7 +34,7 @@ class ClientMessage extends Command {
                 }
 
                 $message = [
-                    "reponse_type" => "message",
+                    "response_type" => "message",
                     "client_id" => $sender->id,
                     "message" => $msg["message"],
                     "conversation_id" => $sender->conversation_id
