@@ -18,17 +18,19 @@ function login() {
     console.log(credentials.password);
 
     fetch("/api/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    }).then(function(response) {
-        console.log(response);
-        if (response.status == 200)
+            method: "POST",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data);
             window.location.href = "/settings";
-        else
+        })
+        .catch(error => {
+            console.log(error);
             window.location.href = "/login";
-    });
+        });
 }

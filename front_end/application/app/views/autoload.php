@@ -14,7 +14,32 @@ function safe_tags_replace(str) {
 
 function process_text(str) {
     let processed = safe_tags_replace(str);
-    return processed.replaceAll(/(^| ):([a-z]+):( |$)/g, '$1<img class="emoji" src="/resources/emojis/$2.png" onerror="this.src=\'resources/emojis/fire.png\'">$3');
+    return processed.replaceAll(/(^| ):([a-z]+):( |$)/g, '$1<img class="emoji" src="https://localhost/resources/emojis/$2.png" onerror="(emoji_on_error.bind(this))()">$3');
+}
+
+function emoji_on_error() {
+    let fallbacks = [
+        "https://cdn.emojidex.com/emoji/seal/",
+        "https://localhost/resources/emojis/not_found.png"
+    ];
+
+    let index = fallbacks.findIndex(element => {
+        return this.src.includes(element);
+    });
+
+    if (index > fallbacks.length)
+        return;
+
+    index++;
+
+    console.log(index);
+
+    if (index != fallbacks.length - 1) {
+        let fileName = this.src.substring(this.src.lastIndexOf('/') + 1);
+        fallbacks[index] += fileName;
+    }
+
+    this.src = fallbacks[index]
 }
 
 class Chat {
@@ -34,9 +59,9 @@ class Chat {
 
         this.content.scrollBy(0, this.content.scrollHeight);
         this.socket = null;
-        this.token = null;
-        this.serverId = null;
-        this.name = null;
+        this.token = "1234";
+        this.serverId = <?php echo $_GET["server_id"] ?>;
+        this.name = "guest";
         this.onChatClose = null;
     }
 
@@ -44,17 +69,12 @@ class Chat {
         this.token = token;
     }
 
-    setServerId(serverId) {
-        this.serverId = serverId;
-    }
-
     setName(name) {
         this.name = name;
     }
 
-    setConfigs(token, serverId, name) {
+    setConfigs(token, name) {
         this.token = token;
-        this.serverId = serverId;
         this.name = name;
     }
 
@@ -63,7 +83,7 @@ class Chat {
         var me_callback = this.sendMsg.bind(this);
 
         // here needs to be the actual host url
-        this.socket = new WebSocket(`wss://${window.location.host}/wss`);
+        this.socket = new WebSocket(`wss://localhost/wss`);
         this.socket.onmessage = function(e) {
             let result = JSON.parse(e.data);
             if (result.response_type == "accepted") {
@@ -74,7 +94,7 @@ class Chat {
                 this.input.disabled = false;
                 this.sendMessage.disabled = false;
                 this.adminName.innerHTML = result.name;
-                this.adminPhoto.src = result.photo;
+                this.adminPhoto.src = "https://localhost/" + result.photo;
                 this.adminPhoto.style.display = "inline";
                 this.available.style.setProperty('--color', "green");
                 stranger_callback(`<i>${result.name} s-a conectat. Puteti incepe conversatia </i>`);
@@ -207,11 +227,19 @@ var htmlRaw = `
     </div>
 `;
 <?php
-    echo 'document.head.insertAdjacentHTML("beforeend", \'<link rel="stylesheet" type="text/css" href="/chatloadercss?server_id=' . $_GET["server_id"] . '"/>\');';
+    echo 'document.head.insertAdjacentHTML("beforeend", \'<link rel="stylesheet" type="text/css" href="https://localhost/chatloadercss?server_id=' . $_GET["server_id"] . '"/>\');';
 ?>
 
 document.body.insertAdjacentHTML("beforeend", htmlRaw);
 
 <?php
     echo 'var '. $data->object_name . '= new ' . $data->class_name . '();';
+    echo $data->object_name . '.show();';
+    echo $data->object_name . '.startConnection();';
 ?>
+
+chat.onChatClose = function() {
+    this.stopConnection();
+    this.hide();
+}
+        

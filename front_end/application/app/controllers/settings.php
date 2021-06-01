@@ -6,7 +6,8 @@ class Settings extends Controller {
     }
 
     public function index() {
-        
+        $admin = Admin::find($_SESSION["id"]);
+
         $this->view('generic_logged_view', [
             'view' => 'settings',
             'css' => [
@@ -15,7 +16,8 @@ class Settings extends Controller {
             ],
             'scripts' => [
                 'settings'
-            ]
+            ],
+            'profile_picture' => $admin->photo
         ]);
     }
 }

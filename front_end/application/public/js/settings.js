@@ -1,6 +1,14 @@
 let colors = document.getElementsByClassName("changeable");
 var lastclicked = null;
 
+
+document.getElementById("profile_picture").onchange = function(event) {
+    const [file] = this.files;
+    if (file) {
+        document.getElementById("profile_picture_preview").src = URL.createObjectURL(file);
+    }
+}
+
 for (i = 0; i < colors.length; i++) {
     colors[i].addEventListener("mouseover", function(e) {
         e.stopPropagation();
@@ -145,7 +153,7 @@ function send_configuration() {
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
-            //window.location.href = "/public/settings";
+            window.location.href = "/settings";
             console.log(xhr.response);
         }
     };
@@ -153,6 +161,31 @@ function send_configuration() {
     xhr.open("PATCH", "/api/update_configuration", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(configuration));
+    change_profile_picture();
+}
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+async function change_profile_picture() {
+    let profile_picture = document.getElementById("profile_picture");
+
+    if (profile_picture.value == "")
+        return;
+
+    let image = await toBase64(profile_picture.files[0]);
+
+    fetch("/api/change_profile_picture", {
+            credentials: "same-origin",
+            method: "POST",
+            body: JSON.stringify({ image: image })
+        })
+        .then(response => response.json())
+        .then(data => { console.log(data) })
 }
 
 get_saved_configuration();

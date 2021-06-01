@@ -19,15 +19,13 @@ var names = [
 
 var nume = names[Math.round(Math.random() * 100) % names.length];
 
-chat.setConfigs("1234", 3, nume);
+chat.setName(nume);
 
 let isShowing = false;
 
 function load_chat() {
     if (!isShowing) {
         document.getElementById("try_demo").style.display = 'none';
-        chat.show()
-        chat.startConnection();
         isShowing = true;
     }
 }

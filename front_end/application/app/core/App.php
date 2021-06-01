@@ -29,6 +29,8 @@ class App {
             return;
         }
 
+        header("Access-Control-Allow-Origin: localhost");
+
         if(isset($url[1])) {
             if(method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];

@@ -23,6 +23,11 @@
                     <input type="password" placeholder="password" id="r_password" required>
                 </div>
 
+                <div class="input_item">
+                    <label for="host">Host</label>
+                    <input type="text" placeholder="host" id="host" required>
+                </div>
+
                 <input type="submit" class="submit_button" id="register" value="Submit">
                 <button type="button" class="submit_button" onclick="location.href='/login'">Already have an account</button>
             </form>

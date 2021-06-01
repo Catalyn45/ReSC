@@ -207,3 +207,8 @@
 #color_picker {
     visibility: hidden;
 }
+
+#profile_picture_preview {
+    width: 200px;
+    height: 200px;
+}

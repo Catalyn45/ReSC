@@ -10,6 +10,7 @@ function register() {
     let password_input = document.getElementById("password");
     let r_password_input = document.getElementById("r_password");
     let email_input = document.getElementById("email");
+    let host = document.getElementById("host");
 
     if (password_input.value != r_password_input.value) {
         window.location.href = "/register";
@@ -19,7 +20,8 @@ function register() {
     let credentials = {
         name: username_input.value,
         password: sha256(password_input.value),
-        email: email_input.value
+        email: email_input.value,
+        host: host.value
     };
 
     var xhr = new XMLHttpRequest();
@@ -30,8 +32,7 @@ function register() {
                 window.location.href = "/login";
             else
                 window.location.href = "/register"
-
-            //console.log(xhr.response);
+            console.log(xhr.response);
         }
     };
 

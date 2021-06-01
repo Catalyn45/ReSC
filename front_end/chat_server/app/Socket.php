@@ -147,11 +147,6 @@ class Socket implements MessageComponentInterface {
                     return;
                 }
 
-                if(!isset($msg["server_id"])) {
-                    $client->close();
-                    return;
-                }
-
                 $command_text = 'MyApp\\commands\\' . $msg["method"];
 
                 $command = new $command_text;
@@ -163,6 +158,7 @@ class Socket implements MessageComponentInterface {
 
                 if(!validAuthority($command->getAuth(), $msg["token"], $msg["server_id"], $client_info)) {
                     $client->close();
+                    echo "nu e valid auth";
                     return;
                 }
 

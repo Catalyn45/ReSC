@@ -9,7 +9,9 @@ class Admin extends Eloquent {
         "name",
         "password",
         "email",
-        "server_id"
+        "server_id",
+        "verified",
+        "photo"
     ];
 
     public $timestamps = [];
@@ -33,5 +35,10 @@ class Admin extends Eloquent {
 
     public static function getByServerId($server_id) {
         return self::where("server_id", $server_id)->first();
+    }
+
+    public static function userExists($username, $email) {
+        $count = self::whereName($username)->orWhere("email", $email)->count();
+        return $count > 0;
     }
 }

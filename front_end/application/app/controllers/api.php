@@ -5,6 +5,10 @@ class Api {
 
         require "../app/commands/{$class_name}.php";
 
+        if(!in_array($_SERVER["SERVER_NAME"], Host::select('name')->lists("name"))) {
+            return ApiMethod::send_error("invalid host");
+        }
+        
         if(!class_exists($class_name))
              return ApiMethod::send_error("Endpoint does not exists: " . $class_name);
 

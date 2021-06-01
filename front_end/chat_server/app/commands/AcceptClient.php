@@ -13,9 +13,9 @@ class AcceptClient extends Command {
 
     public function run($msg, $client, $clients) {
         $this->logger->log_info("Command called");
-        $admin = \Admin::getByToken($msg["token"], $msg["server_id"]);
+        $admin = \Admin::getByToken($msg["token"]);
 
-        $client_db = \Client::updateAccept($admin->id, $msg["server_id"]);
+        $client_db = \Client::updateAccept($admin->id, $admin->server_id);
 
         if(is_null($client_db)) {
             $message = [

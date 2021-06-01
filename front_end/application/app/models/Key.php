@@ -6,7 +6,8 @@ class Key extends Eloquent {
     protected $table = 'keys';
 
     protected $fillable = [
-        "token"
+        "token",
+        "server_id"
     ];
 
     public $timestamps = [];

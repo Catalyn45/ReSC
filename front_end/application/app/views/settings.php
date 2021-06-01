@@ -57,6 +57,18 @@
                 </table>
 
             </div>
+
+            <div class="panel main_panel__elements__settings">
+                <p>Profile picture</p>
+                <img id = "profile_picture_preview" src="<?php echo $data["profile_picture"];?>">
+                <div class="functions">
+                    <div>
+                        <label for="class_name">Profile picture:</label>
+                        <input type="file" id="profile_picture">
+                    </div>
+                </div>
+            </div>
+
             <div class="panel main_panel__elements__settings">
                 <p>Class name</p>
                 <div class="functions">
@@ -65,7 +77,6 @@
                         <input type="text" id="class_name">
                     </div>
                 </div>
-
             </div>
             <div class="panel main_panel__elements__settings">
                 <p>Object name</p>

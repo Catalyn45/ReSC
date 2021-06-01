@@ -22,7 +22,32 @@ function safe_tags_replace(str) {
 
 function process_text(str) {
     let processed = safe_tags_replace(str);
-    return processed.replaceAll(/(^| ):([a-z]+):( |$)/g, '$1<img class="emoji" src="/resources/emojis/$2.png" onerror="this.src=\'resources/emojis/fire.png\'">$3');
+    return processed.replaceAll(/(^| ):([a-z]+):( |$)/g, '$1<img class="emoji" src="resources/emojis/$2.png" onerror="(emoji_on_error.bind(this))()">$3');
+}
+
+function emoji_on_error() {
+    let fallbacks = [
+        "https://cdn.emojidex.com/emoji/seal/",
+        "/resources/emojis/not_found.png"
+    ];
+
+    let index = fallbacks.findIndex(element => {
+        return this.src.includes(element);
+    });
+
+    if (index > fallbacks.length)
+        return;
+
+    index++;
+
+    console.log(index);
+
+    if (index != fallbacks.length - 1) {
+        let fileName = this.src.substring(this.src.lastIndexOf('/') + 1);
+        fallbacks[index] += fileName;
+    }
+
+    this.src = fallbacks[index]
 }
 
 var blob = new Blob(["Welcome to Websparrow.org."], { type: "text/plain;charset=utf-8" });
@@ -31,8 +56,7 @@ function get_client() {
     let message = {
         method: "AcceptClient",
         authority: "ADMIN",
-        token: token,
-        server_id: 3
+        token: token
     };
 
     socket.send(JSON.stringify(message));
@@ -80,7 +104,6 @@ function close_client() {
         method: "CloseClient",
         authority: "ADMIN",
         token: token,
-        server_id: 3,
         client_id: current_connection.client_id
     };
 
@@ -170,8 +193,7 @@ socket.onopen = function(e) {
     socket.send(JSON.stringify({
         method: "ConnectAdmin",
         authority: "ADMIN",
-        token: token,
-        server_id: 3
+        token: token
     }));
 }
 
@@ -263,7 +285,6 @@ function sendMsg() {
         method: "AdminMessage",
         authority: "ADMIN",
         token: token,
-        server_id: 3,
         client_id: current_connection.client_id,
         message: input_text.value
     }));
