@@ -1,4 +1,4 @@
 RewriteEngine on
 
 RewriteCond %{REQUEST_URI} !^public
-RewriteRule ^(.*)$ front_end/application/public/$1 [L]
+RewriteRule ^(.*)$ application/public/$1 [L]
