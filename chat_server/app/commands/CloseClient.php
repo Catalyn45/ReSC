@@ -4,7 +4,7 @@ use MyApp\Command;
 
 class CloseClient extends Command {
     public function __construct() {
-        parent::__construct($_SERVER["SCRIPT_FILENAME"]);
+        parent::__construct("CloseClient.php");
     }
 
     public function getAuth() {
@@ -18,9 +18,17 @@ class CloseClient extends Command {
     }
 
     public function run($msg, $client, $clients) {
+        $this->logger->log_info("Command called");
         $sender = \Client::find($client->id);
 
-        if(is_null($sender) || $sender->admin_id != $client->id) {
+        if(is_null($sender)) {
+            $this->logger->log_info("Can't find the client");
+            return $client->send_error("Invalid client to close");
+        }
+        
+        
+        if($sender->admin_id != $client->id) {
+            $this->logger->lof_info("different admin id, can't close");
             return $client->send_error("Invalid client to close");
         }
 

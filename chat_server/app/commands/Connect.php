@@ -3,7 +3,7 @@ namespace MyApp\commands;
 use MyApp\Command;
 class Connect extends Command {
     public function __construct() {
-        parent::__construct($_SERVER["SCRIPT_FILENAME"]);
+        parent::__construct("Connect.php");
     }
 
     public function getAuth() {
@@ -17,6 +17,8 @@ class Connect extends Command {
     }
 
     public function run($msg, $client, $clients) {
+        $this->logger->log_info("Command called");
+        
         $db_client = \Client::create([
             "name" => $msg["name"],
             "server_id" => $msg["server_id"],
@@ -24,6 +26,7 @@ class Connect extends Command {
         ]);
 
         if(is_null($db_client)) {
+            $this->logger->log_error("Can't create client");
             return $client->send_error("Can't connect to the server");
         }
 

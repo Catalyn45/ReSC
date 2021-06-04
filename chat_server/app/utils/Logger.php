@@ -13,4 +13,9 @@ class Logger {
         $now = new \DateTime();
         echo '[' . $now->format('Y-m-d H:i:s') . "][INFO][{$this->file_name}] {$msg}\n";
     }
+
+    public function log_error($msg) {
+        $now = new \DateTime();
+        echo '[' . $now->format('Y-m-d H:i:s') . "][ERROR][{$this->file_name}] {$msg}\n";
+    }
 }

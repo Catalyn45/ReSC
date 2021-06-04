@@ -8,7 +8,7 @@ use MyApp\utils\Logger;
 use MyApp\utils\Commons;
 
 global $logger;
-$logger = new Logger($_SERVER["SCRIPT_FILENAME"]);
+$logger = new Logger("Socket.php");
 
 function validAuthority($authority, $token, $server_id, $client) {
     global $logger;
@@ -18,7 +18,7 @@ function validAuthority($authority, $token, $server_id, $client) {
             $logger->log_info("Client token not found");
             return false;
         }
-
+        $logger->log_info("client conectat cu success");
         return true;
     }
 
@@ -34,8 +34,6 @@ function validAuthority($authority, $token, $server_id, $client) {
 
         $client->id = $admin->id;
         $client->isAdmin = true;
-
-        $logger->log_info("client connected: {$client->id}");
         return true;
     }
 
@@ -44,7 +42,7 @@ function validAuthority($authority, $token, $server_id, $client) {
 
 function admin_disconnect($clients, $admin) {
     foreach($clients as $client) {
-        if($client->isAdmin)
+        if($client->isAdmin || $client->id == -1)
             continue;
 
         $client_db = \Client::find($client->id);
@@ -53,10 +51,10 @@ function admin_disconnect($clients, $admin) {
             continue;
 
         if(!$client_db->waiting && $client_db->admin_id == $admin->id) {
-            $client->socket->send(json_encode([
+            $client->send_response([
                     "response_type" => "disconnected",
                     "message" => "Admin disconnected"
-                ]));
+                ]);
 
             \Client::destroy($client_db->id);
             $client->socket->close();
@@ -76,18 +74,18 @@ function client_disconnect($clients, $disconnecting_client) {
             if($client->id != $client_db->admin_id)
                 continue;
             
-            $client->socket->send(json_encode([
+            $client->send_response([
                 "response_type" => "disconnected",
                 "message" => "Client disconnected",
                 "conversation_id" => $client_db->conversation_id,
                 "client_id" => $client_db->id
-            ]));
+            ]);
 
             break;
         }
     } else {
         $admin = \Admin::getByServerId($client_db->server_id);
-        $logger->log_info("am gasit admin sa-i trimit disconnect {$admin->id}");
+
         if(!is_null($admin)) {
             foreach($clients as $client) {
                 if(!$client->isAdmin)
@@ -95,9 +93,9 @@ function client_disconnect($clients, $disconnecting_client) {
 
                 if($client->id == $admin->id) {
                     $logger->log_info("ii trimit acm la admin");
-                    $client->socket->send(json_encode([
+                    $client->send_response([
                         "response_type" => "client_stop_waiting"
-                    ]));
+                    ]);
                     break;
                 }
             }
@@ -133,8 +131,7 @@ class ConnectionInfo {
 class Socket implements MessageComponentInterface {
     private $logger;
 
-    public function __construct()
-    {
+    public function __construct(){
         global $logger;
         $this->clients = new \SplObjectStorage;
         $this->logger = $logger;
@@ -185,8 +182,14 @@ class Socket implements MessageComponentInterface {
                         return $client_info->send_error("required field does not exists");
                 }
 
-                if(!validAuthority($command->getAuth(), $msg["token"], $msg["server_id"], $client_info)) {
-                    return $client_info->send_error("Can't have the right to use the command");
+                $server_id = null;
+
+                if(isset($msg["server_id"])) {
+                    $server_id = $msg["server_id"];
+                }
+
+                if(!validAuthority($command->getAuth(), $msg["token"], $server_id, $client_info)) {
+                    return $client_info->send_error("don't have the right to use the command");
                 }
 
                 $command->run($msg, $client_info, $this->clients);
@@ -196,15 +199,16 @@ class Socket implements MessageComponentInterface {
     }
 
     public function onClose(ConnectionInterface $conn) {
-        $this->logger->log_info('disconnect');
         foreach($this->clients as $client) {
             if($conn->resourceId == $client->socket->resourceId) {
                 $this->clients->detach($client);
 
                 if($client->isAdmin) {
+                    $this->logger->log_info('admin disconnected');
                     admin_disconnect($this->clients, $client);
                 }
                 else if($client->id != -1) {
+                    $this->logger->log_info('client disconnected');
                     client_disconnect($this->clients, $client);
                 }
                 return;
@@ -213,5 +217,6 @@ class Socket implements MessageComponentInterface {
     }
 
     public function onError(ConnectionInterface $conn, \Exception $e) {
+        $this->logger->log_error($e->getMessage());
     }
 }
