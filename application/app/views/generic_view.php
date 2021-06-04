@@ -22,9 +22,10 @@ if(isset($data['css'])) {
         <img id="logo" src="/resources/images/banner.png" alt="logo">
         <p id="slogan"></p>
         <nav id="menu">
-            <a href="/home"><img src="/resources/images/home.png" alt="home">Acasa</a>
+            <a href="/home"><img src="/resources/images/home.png" alt="home">Home</a>
             <a href="/register"><img src="/resources/images/register.png" alt="register">Register</a>
             <a href="/login"><img src="/resources/images/login.png" alt="login">Login</a>
+            <a href="/docs"><img src="/resources/images/docs.png" alt="login">Docs</a>
         </nav>
     </header>
 

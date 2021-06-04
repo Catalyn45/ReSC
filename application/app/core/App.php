@@ -20,7 +20,9 @@ class App {
         $this->controller = new $this->controller;
 
         if(isset($url[1])) {
-            $this->method = $url[1];
+            if(method_exists($this->controller, $url[1])) {
+                $this->method = $url[1];
+            }
             unset($url[1]);
         }
         
@@ -30,13 +32,6 @@ class App {
         }
 
         //header("Access-Control-Allow-Origin: localhost");
-
-        if(isset($url[1])) {
-            if(method_exists($this->controller, $url[1])) {
-                $this->method = $url[1];
-            }
-            unset($url[1]);
-        }
 
         if($this->controller->need_auth()) {
             if(!isset($_SESSION['valid']) || !$_SESSION['valid']) {
