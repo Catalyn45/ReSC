@@ -18,17 +18,18 @@ class App {
 
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
-
         if(isset($url[1])) {
-            if(method_exists($this->controller, $url[1])) {
-                $this->method = $url[1];
-            }
+            $this->method = $url[1];
             unset($url[1]);
         }
-        
+
         if($this->controller instanceof Api) {
             call_user_func([$this->controller, 'execute'], $this->method);
             return;
+        }
+
+        if(!method_exists($this->controller, $this->method)) {
+            $this->method = "index";
         }
 
         //header("Access-Control-Allow-Origin: localhost");
