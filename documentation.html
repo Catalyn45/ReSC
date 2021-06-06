@@ -35,6 +35,29 @@
                 <ul>
                     <li>3.1 <a href="#utiliz">Interfețe utilizator</a></li>
                 </ul>
+                <li><a href="#Api">Api</a></li>
+                <ul>
+                    <li><a href="#Login">Login</a></li>
+                    <li><a href="#Logout">Logout</a></li>
+                    <li><a href="#Change_profile_picture">Change profile picture</a></li>
+                    <li><a href="#Create_account">Create account</a></li>
+                    <li><a href="#Get_chat_configuration">Get chat configuration</a></li>
+                    <li><a href="#Update_chat_configuration">Update chat configuration</a></li>
+                    <li><a href="#Get_default_chat_configuration">Get default chat configuration</a></li>
+                    <li><a href="#Add_chat_key">Add chat key</a></li>
+                    <li><a href="#Delete_chat_key">Delete chat key</a></li>
+                    <li><a href="#Get_waiting_clients">Get waiting clients</a></li>
+                    <li><a href="#Get_messages">Get messages</a></li>
+                </ul>
+                <li><a href="#Websocket_server">Wensocket server</a></li>
+                <ul>
+                    <li><a href="#Start_waiting_for_admin">Start waiting for admin</a></li>
+                    <li><a href="#Admin_connect">Admin connect</a></li>
+                    <li><a href="#Accept_a_client">Accept a client</a></li>
+                    <li><a href="#Client_send_message">Client send message</a></li>
+                    <li><a href="#Admin_send_message">Admin send message</a></li>
+                    <li><a href="#Close_client">Close client</a></li>
+                </ul>
             </ol>
             <hr>
             <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
@@ -126,8 +149,9 @@
             <figure typeof="sa:image">
                 <img src="./application/public/resources/docs/chat.png" alt="callbacks" style="width: 600px; height: 300px">
             </figure>
+            <hr>
             <h2 class="code-line" data-line-start=0 data-line-end=1>
-                <a id="Api_0"></a>Api</h2>
+                <a id="Api"></a>Api</h2>
             <p class="has-line-data" data-line-start="1" data-line-end="3">Toate functionalitatile aplicatiei web sunt disponibile si prin intermediul api-ului.<br> Acesta se poate accesa la endpoint-ul <code>/api</code>.</p>
             <p class="has-line-data" data-line-start="4" data-line-end="5">Toate mesajele de eroare respecta urmatorul format:</p>
             <pre><code class="has-line-data" data-line-start="6" data-line-end="11">{
@@ -137,9 +161,22 @@
 </code></pre>
             <p class="has-line-data" data-line-start="12" data-line-end="13">Api-ul ofera urmatoarele functionalitati:</p>
 
+            <ul>
+                <li><a href="#Login">Login</a></li>
+                <li><a href="#Logout">Logout</a></li>
+                <li><a href="#Change_profile_picture">Change profile picture</a></li>
+                <li><a href="#Create_account">Create account</a></li>
+                <li><a href="#Get_chat_configuration">Get chat configuration</a></li>
+                <li><a href="#Update_chat_configuration">Update chat configuration</a></li>
+                <li><a href="#Get_default_chat_configuration">Get default chat configuration</a></li>
+                <li><a href="#Add_chat_key">Add chat key</a></li>
+                <li><a href="#Delete_chat_key">Delete chat key</a></li>
+                <li><a href="#Get_waiting_clients">Get waiting clients</a></li>
+                <li><a href="#Get_messages">Get messages</a></li>
+            </ul>
             <hr>
             <h3 class="code-line" data-line-start=14 data-line-end=15>
-                <a id="Login_14"></a>Login</h3>
+                <a id="Login"></a>Login</h3>
             <p class="has-line-data" data-line-start="15" data-line-end="20"><strong>endpoint:</strong> <code>/api/login</code><br>
                 <strong>method:</strong> <code>POST</code><br>
                 <strong>need authentication</strong>: No<br>
@@ -163,7 +200,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=38 data-line-end=39>
-                <a id="Logout_38"></a>Logout</h3>
+                <a id="Logout"></a>Logout</h3>
             <p class="has-line-data" data-line-start="39" data-line-end="44"><strong>endpoint:</strong> <code>/api/logout</code><br>
                 <strong>method:</strong> <code>POST</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -180,7 +217,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=55 data-line-end=56>
-                <a id="Change_profile_picture_55"></a>Change profile picture</h3>
+                <a id="Change_profile_picture"></a>Change profile picture</h3>
             <p class="has-line-data" data-line-start="56" data-line-end="61"><strong>endpoint:</strong> <code>/api/change_profile_picture</code><br>
                 <strong>method:</strong> <code>POST</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -199,7 +236,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=74 data-line-end=75>
-                <a id="Create_account_74"></a>Create account</h3>
+                <a id="Create_account"></a>Create account</h3>
             <p class="has-line-data" data-line-start="75" data-line-end="80"><strong>endpoint:</strong> <code>/api/create_account</code><br>
                 <strong>method:</strong> <code>POST</code><br>
                 <strong>need authentication</strong>: No<br>
@@ -222,7 +259,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=98 data-line-end=99>
-                <a id="Get_chat_configuration_98"></a>Get chat configuration</h3>
+                <a id="Get_chat_configuration"></a>Get chat configuration</h3>
             <p class="has-line-data" data-line-start="99" data-line-end="104"><strong>endpoint:</strong> <code>/api/get_configuration</code><br>
                 <strong>method:</strong> <code>GET</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -252,7 +289,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=128 data-line-end=129>
-                <a id="Update_chat_configuration_128"></a>Update chat configuration</h3>
+                <a id="Update_chat_configuration"></a>Update chat configuration</h3>
             <p class="has-line-data" data-line-start="129" data-line-end="134"><strong>endpoint:</strong> <code>/api/update_configuration</code><br>
                 <strong>method:</strong> <code>PATCH</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -281,7 +318,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=158 data-line-end=159>
-                <a id="Get_default_chat_configuration_158"></a>Get default chat configuration</h3>
+                <a id="Get_default_chat_configuration"></a>Get default chat configuration</h3>
             <p class="has-line-data" data-line-start="159" data-line-end="164"><strong>endpoint:</strong> <code>/api/get_default_configuration</code><br>
                 <strong>method:</strong> <code>GET</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -310,7 +347,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=187 data-line-end=188>
-                <a id="Add_chat_key_187"></a>Add chat key</h3>
+                <a id="Add_chat_key"></a>Add chat key</h3>
             <p class="has-line-data" data-line-start="188" data-line-end="194"><strong>endpoint:</strong> <code>/api/add_key</code><br>
                 <strong>method:</strong> <code>POST</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -329,7 +366,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=207 data-line-end=208>
-                <a id="Delete_chat_key_207"></a>Delete chat key</h3>
+                <a id="Delete_chat_key"></a>Delete chat key</h3>
             <p class="has-line-data" data-line-start="208" data-line-end="214"><strong>endpoint:</strong> <code>/api/delete_key</code><br>
                 <strong>method:</strong> <code>DELETE</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -348,7 +385,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=227 data-line-end=228>
-                <a id="Get_waiting_clients_227"></a>Get waiting clients</h3>
+                <a id="Get_waiting_clients"></a>Get waiting clients</h3>
             <p class="has-line-data" data-line-start="228" data-line-end="233"><strong>endpoint:</strong> <code>/api/get_waiting_clients</code><br>
                 <strong>method:</strong> <code>GET</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -366,7 +403,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=245 data-line-end=246>
-                <a id="Get_messages_245"></a>Get messages</h3>
+                <a id="Get_messages"></a>Get messages</h3>
             <p class="has-line-data" data-line-start="246" data-line-end="251"><strong>endpoint:</strong> <code>/api/get_messages</code><br>
                 <strong>method:</strong> <code>GET</code><br>
                 <strong>need authentication</strong>: Yes<br>
@@ -387,8 +424,9 @@
     ]
 }
 </code></pre>
+            <hr>
             <h2 class="code-line" data-line-start=269 data-line-end=270>
-                <a id="Websocket_server_269"></a>Websocket server</h2>
+                <a id="Websocket_server"></a>Websocket server</h2>
             <p class="has-line-data" data-line-start="271" data-line-end="273">Pentru a putea comunica real time cu clientii, chatul foloseste un <code>Websocket server</code>.<br> Acesta este folosit pentru a trimite mesaje clientilor/administratorilor si pentru a accepta/respinge clienti. Conectarea la server se face
                 folosing protocolul <code>wss</code> la endpointul <code>/wss</code>.</p>
             <p class="has-line-data" data-line-start="274" data-line-end="275">Toate mesajele trebuie sa respecte urmatorul format:</p>
@@ -416,10 +454,17 @@
 }
 </code></pre>
             <p class="has-line-data" data-line-start="306" data-line-end="307">The following methods can be called:</p>
-
+            <ul>
+                <li><a href="#Start_waiting_for_admin">Start waiting for admin</a></li>
+                <li><a href="#Admin_connect">Admin connect</a></li>
+                <li><a href="#Accept_a_client">Accept a client</a></li>
+                <li><a href="#Client_send_message">Client send message</a></li>
+                <li><a href="#Admin_send_message">Admin send message</a></li>
+                <li><a href="#Close_client">Close client</a></li>
+            </ul>
             <hr>
             <h3 class="code-line" data-line-start=307 data-line-end=308>
-                <a id="Start_waiting_for_admin_307"></a>Start waiting for admin</h3>
+                <a id="Start_waiting_for_admin"></a>Start waiting for admin</h3>
             <p class="has-line-data" data-line-start="308" data-line-end="312"><strong>authority</strong>: Client<br>
                 <strong>description:</strong> Clientul este pus intr-o coada de asteptare pana cand un administrator<br> il accepta.<br>
                 <strong>request:</strong></p>
@@ -443,7 +488,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=333 data-line-end=334>
-                <a id="Admin_connect_333"></a>Admin connect</h3>
+                <a id="Admin_connect"></a>Admin connect</h3>
             <p class="has-line-data" data-line-start="334" data-line-end="337"><strong>authority</strong>: Admin<br>
                 <strong>description:</strong> Conectarea administratorului la server.<br>
                 <strong>request:</strong></p>
@@ -461,7 +506,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=351 data-line-end=352>
-                <a id="Accept_a_client_351"></a>Accept a client</h3>
+                <a id="Accept_a_client"></a>Accept a client</h3>
             <p class="has-line-data" data-line-start="352" data-line-end="355"><strong>authority</strong>: Admin<br>
                 <strong>description:</strong> Acceptarea unui client din coada de asteptare.<br>
                 <strong>request:</strong></p>
@@ -489,7 +534,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=380 data-line-end=381>
-                <a id="Client_send_message_380"></a>Client send message</h3>
+                <a id="Client_send_message"></a>Client send message</h3>
             <p class="has-line-data" data-line-start="381" data-line-end="384"><strong>authority</strong>: Client<br>
                 <strong>description:</strong> Clientul trimite un mesaj catre administrator<br>
                 <strong>request:</strong></p>
@@ -516,7 +561,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=408 data-line-end=409>
-                <a id="Admin_send_message_408"></a>Admin send message</h3>
+                <a id="Admin_send_message"></a>Admin send message</h3>
             <p class="has-line-data" data-line-start="409" data-line-end="412"><strong>authority</strong>: Admin<br>
                 <strong>description:</strong> Administratorul trimite un mesaj catre un client<br>
                 <strong>request:</strong></p>
@@ -541,7 +586,7 @@
 
             <hr>
             <h3 class="code-line" data-line-start=434 data-line-end=435>
-                <a id="Close_client_434"></a>Close client</h3>
+                <a id="Close_client"></a>Close client</h3>
             <p class="has-line-data" data-line-start="435" data-line-end="438"><strong>authority</strong>: Admin<br>
                 <strong>description:</strong> Administratorul intrerupe conexiunea cu un client<br>
                 <strong>request:</strong></p>
