@@ -31,6 +31,6 @@ class Change_Profile_Picture_Method extends PostMethod {
         $admin->photo = "/resources/profile_pictures/" . $_SESSION["id"] . $_SESSION["user"] . "." . $type;
         $admin->save();
 
-        $this->send_success($params);
+        $this->send_success("Profile picture changed");
     }
 }

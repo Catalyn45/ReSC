@@ -27,3 +27,23 @@
 #main_container {
     text-align: left;
 }
+
+code {
+    background-color: rgba(27, 31, 35, 0.2);
+    border-radius: 3px;
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+hr {
+    margin-top: 40px;
+}

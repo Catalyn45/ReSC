@@ -23,6 +23,6 @@ class Add_Key_Method extends PostMethod {
         if(is_null($key))
             return $this->send_error("Can't add the key");
 
-        return $this->send_success($response=["token" => $key]);
+        return $this->send_success("key added with success");
     }
 }

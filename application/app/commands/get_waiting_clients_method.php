@@ -17,6 +17,6 @@ class Get_Waiting_Clients_Method extends GetMethod {
         if(is_null($nr_clients))
             $nr_clients = 0;
 
-        $this->send_success("", $nr_clients);
+        $this->send_success("Got waiting clients!", $nr_clients);
     }
 }

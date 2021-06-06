@@ -1,4 +1,4 @@
-<main>
+<main prefix="schema: http://schema.org">
     <div class="panel" id="main_panel">
         <h1 id="title">Realtime Support Chat(ReSC)</h1>
         <section id="main_container">
@@ -126,7 +126,453 @@
             <figure typeof="sa:image">
                 <img src="./application/public/resources/docs/chat.png" alt="callbacks" style="width: 600px; height: 300px">
             </figure>
-            <ul class="main_panel__text">
-            </ul>
+            <h2 class="code-line" data-line-start=0 data-line-end=1>
+                <a id="Api_0"></a>Api</h2>
+            <p class="has-line-data" data-line-start="1" data-line-end="3">Toate functionalitatile aplicatiei web sunt disponibile si prin intermediul api-ului.<br> Acesta se poate accesa la endpoint-ul <code>/api</code>.</p>
+            <p class="has-line-data" data-line-start="4" data-line-end="5">Toate mesajele de eroare respecta urmatorul format:</p>
+            <pre><code class="has-line-data" data-line-start="6" data-line-end="11">{
+    &quot;response_type&quot;: &quot;ERROR&quot;,
+    &quot;message&quot;: &lt;error message&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="12" data-line-end="13">Api-ul ofera urmatoarele functionalitati:</p>
+
+            <hr>
+            <h3 class="code-line" data-line-start=14 data-line-end=15>
+                <a id="Login_14"></a>Login</h3>
+            <p class="has-line-data" data-line-start="15" data-line-end="20"><strong>endpoint:</strong> <code>/api/login</code><br>
+                <strong>method:</strong> <code>POST</code><br>
+                <strong>need authentication</strong>: No<br>
+                <strong>description:</strong> logheaza un administrator.<br>
+                <strong>request body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="21" data-line-end="26">{
+    &quot;name&quot;: &lt;username/email&gt;,
+    &quot;password&quot;: &lt;admin password&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="26" data-line-end="27"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="28" data-line-end="36">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;Successfuly logged&quot;,
+    &quot;response&quot;: {
+        &quot;server_id&quot;: &lt;admin server id&gt;
+    }
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="36" data-line-end="37"><em>note</em>: Raspunsul va contine si un cookie ce va fi setat, adica <code>PHPSESSID</code> a carui valoare este un token care trebuie sa fie prezent in urmatoarele request-uri.</p>
+
+            <hr>
+            <h3 class="code-line" data-line-start=38 data-line-end=39>
+                <a id="Logout_38"></a>Logout</h3>
+            <p class="has-line-data" data-line-start="39" data-line-end="44"><strong>endpoint:</strong> <code>/api/logout</code><br>
+                <strong>method:</strong> <code>POST</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> delogheaza un administrator.<br>
+                <strong>request body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="45" data-line-end="47">none
+</code></pre>
+            <p class="has-line-data" data-line-start="47" data-line-end="48"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="49" data-line-end="54">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;Logout successfully&quot;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=55 data-line-end=56>
+                <a id="Change_profile_picture_55"></a>Change profile picture</h3>
+            <p class="has-line-data" data-line-start="56" data-line-end="61"><strong>endpoint:</strong> <code>/api/change_profile_picture</code><br>
+                <strong>method:</strong> <code>POST</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> Schimba poza de profil a unui administrator.<br>
+                <strong>request body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="62" data-line-end="66">{
+    &quot;image&quot;: &lt;content of the image in base64&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="66" data-line-end="67"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="68" data-line-end="73">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;Profile picture changed&quot;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=74 data-line-end=75>
+                <a id="Create_account_74"></a>Create account</h3>
+            <p class="has-line-data" data-line-start="75" data-line-end="80"><strong>endpoint:</strong> <code>/api/create_account</code><br>
+                <strong>method:</strong> <code>POST</code><br>
+                <strong>need authentication</strong>: No<br>
+                <strong>description:</strong> Creeaza un nou cont de administrator.<br>
+                <strong>request body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="81" data-line-end="88">{
+    &quot;name&quot;: &lt;admin username&gt;,
+    &quot;password&quot;: &lt;admin password&gt;,
+    &quot;email&quot;: &lt;admin email&gt;,
+    &quot;host&quot;: &lt;admin host&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="88" data-line-end="89"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="90" data-line-end="95">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;Account created successfuly&quot;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="95" data-line-end="97"><em>note:</em> Dupa ce contul de administrator este creat, administratorul va primi<br> un email continand un link de activare.</p>
+
+            <hr>
+            <h3 class="code-line" data-line-start=98 data-line-end=99>
+                <a id="Get_chat_configuration_98"></a>Get chat configuration</h3>
+            <p class="has-line-data" data-line-start="99" data-line-end="104"><strong>endpoint:</strong> <code>/api/get_configuration</code><br>
+                <strong>method:</strong> <code>GET</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> Intoarce configuratiile chat-ului unui administrator.<br>
+                <strong>request parameters:</strong></p>
+            <pre><code class="has-line-data" data-line-start="105" data-line-end="107">none
+</code></pre>
+            <p class="has-line-data" data-line-start="107" data-line-end="108"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="109" data-line-end="126">{
+   &quot;response_type&quot;:&quot;SUCCESS&quot;,
+   &quot;message&quot;:&quot;Got configuration with succeess&quot;,
+   &quot;response&quot;:{
+      &quot;chatcolor_top&quot;: &lt;hex color value of the top part of the chat&gt;,
+      &quot;chatcolor_mid&quot;: &lt;hex color value of the mid part of the chat&gt;,
+      &quot;chatcolor_input&quot;: &lt;hex color value of the input of the chat&gt;,
+      &quot;chatcolor_button&quot;: &lt;hex color value of the button of the chat&gt;,
+      &quot;chatcolor_client&quot;: &lt;hex color value of client part of the chat&gt;,
+      &quot;chatcolor_stranger&quot;: &lt;hex color value of the admin part of the chat&gt;,
+      &quot;chatposition_line&quot;: &lt;value representing the vertical chat position&gt; (0 - left, 1 - mid, 2 - right),
+      &quot;chatposition_column&quot;: &lt;value representing the horisontal chat position&gt; (0 - left, 1 - mid, 2 - right),
+      &quot;class_name&quot;:&lt;chat class name&gt;,
+      &quot;object_name&quot;:&quot;&lt;chat object name&gt;&quot;
+   }
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="126" data-line-end="127"><em>note:</em> valorile pentru culori sunt reprezentate ca string-uri (ex. “4e37b6”).</p>
+
+            <hr>
+            <h3 class="code-line" data-line-start=128 data-line-end=129>
+                <a id="Update_chat_configuration_128"></a>Update chat configuration</h3>
+            <p class="has-line-data" data-line-start="129" data-line-end="134"><strong>endpoint:</strong> <code>/api/update_configuration</code><br>
+                <strong>method:</strong> <code>PATCH</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> schimba configuratiile unui administrator.<br>
+                <strong>request body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="135" data-line-end="148">{
+     &quot;chatcolor_top&quot;: &lt;hex color value of the top part of the chat&gt;,
+     &quot;chatcolor_mid&quot;: &lt;hex color value of the mid part of the chat&gt;,
+     &quot;chatcolor_input&quot;: &lt;hex color value of the input of the chat&gt;,
+     &quot;chatcolor_button&quot;: &lt;hex color value of the button of the chat&gt;,
+     &quot;chatcolor_client&quot;: &lt;hex color value of client part of the chat&gt;,
+     &quot;chatcolor_stranger&quot;: &lt;hex color value of the admin part of the chat&gt;,
+     &quot;chatposition_line&quot;: &lt;value representing the vertical chat position&gt; (0 - left, 1 - mid, 2 - right),
+     &quot;chatposition_column&quot;: &lt;value representing the horisontal chat position&gt; (0 - left, 1 - mid, 2 - right),
+     &quot;class_name&quot;:&lt;chat class name&gt;,
+     &quot;object_name&quot;:&quot;&lt;chat object name&gt;&quot;
+  }
+</code></pre>
+            <p class="has-line-data" data-line-start="148" data-line-end="149"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="150" data-line-end="155">{
+   &quot;response_type&quot;:&quot;SUCCESS&quot;,
+   &quot;message&quot;:&quot;Configuration updated!&quot;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="155" data-line-end="157"><em>note:</em> Nu trebuie sa fie prezente toate campurile, ci doar campurile care<br> trebuie sa fie schimbate.</p>
+
+            <hr>
+            <h3 class="code-line" data-line-start=158 data-line-end=159>
+                <a id="Get_default_chat_configuration_158"></a>Get default chat configuration</h3>
+            <p class="has-line-data" data-line-start="159" data-line-end="164"><strong>endpoint:</strong> <code>/api/get_default_configuration</code><br>
+                <strong>method:</strong> <code>GET</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> Intoarce o configuratie default.<br>
+                <strong>request parameters:</strong></p>
+            <pre><code class="has-line-data" data-line-start="165" data-line-end="167">none
+</code></pre>
+            <p class="has-line-data" data-line-start="167" data-line-end="168"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="169" data-line-end="186">{
+   &quot;response_type&quot;:&quot;SUCCESS&quot;,
+   &quot;message&quot;:&quot;Got default configuration with succeess&quot;,
+   &quot;response&quot;:{
+      &quot;chatcolor_top&quot;: &lt;hex color value of the top part of the chat&gt;,
+      &quot;chatcolor_mid&quot;: &lt;hex color value of the mid part of the chat&gt;,
+      &quot;chatcolor_input&quot;: &lt;hex color value of the input of the chat&gt;,
+      &quot;chatcolor_button&quot;: &lt;hex color value of the button of the chat&gt;,
+      &quot;chatcolor_client&quot;: &lt;hex color value of client part of the chat&gt;,
+      &quot;chatcolor_stranger&quot;: &lt;hex color value of the admin part of the chat&gt;,
+      &quot;chatposition_line&quot;: &lt;value representing the vertical chat position&gt; (0 - left, 1 - mid, 2 - right),
+      &quot;chatposition_column&quot;: &lt;value representing the horisontal chat position&gt; (0 - left, 1 - mid, 2 - right),
+      &quot;class_name&quot;:&lt;chat class name&gt;,
+      &quot;object_name&quot;:&quot;&lt;chat object name&gt;&quot;
+   }
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=187 data-line-end=188>
+                <a id="Add_chat_key_187"></a>Add chat key</h3>
+            <p class="has-line-data" data-line-start="188" data-line-end="194"><strong>endpoint:</strong> <code>/api/add_key</code><br>
+                <strong>method:</strong> <code>POST</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> Adauga o cheie ce poate fi folosita de catre un client pentru a se<br> conecta la chat.<br>
+                <strong>request body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="195" data-line-end="199">{
+    &quot;token&quot;: &lt;the chat key&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="199" data-line-end="200"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="201" data-line-end="206">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;key added with success&quot;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=207 data-line-end=208>
+                <a id="Delete_chat_key_207"></a>Delete chat key</h3>
+            <p class="has-line-data" data-line-start="208" data-line-end="214"><strong>endpoint:</strong> <code>/api/delete_key</code><br>
+                <strong>method:</strong> <code>DELETE</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> Sterge o cheie ce poate fi folosita de catre un client pentru a se<br> conecta la chat.<br>
+                <strong>request body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="215" data-line-end="219">{
+    &quot;token&quot;: &lt;the chat key&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="219" data-line-end="220"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="221" data-line-end="226">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;key deleted with success&quot;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=227 data-line-end=228>
+                <a id="Get_waiting_clients_227"></a>Get waiting clients</h3>
+            <p class="has-line-data" data-line-start="228" data-line-end="233"><strong>endpoint:</strong> <code>/api/get_waiting_clients</code><br>
+                <strong>method:</strong> <code>GET</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> Intoarce numarul de clienti ce se afla in asteptare.<br>
+                <strong>request parameters:</strong></p>
+            <pre><code class="has-line-data" data-line-start="234" data-line-end="236">none
+</code></pre>
+            <p class="has-line-data" data-line-start="236" data-line-end="237"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="238" data-line-end="244">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;Got waiting clients!&quot;,
+    &quot;response&quot; : &lt;number of waiting clients&gt;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=245 data-line-end=246>
+                <a id="Get_messages_245"></a>Get messages</h3>
+            <p class="has-line-data" data-line-start="246" data-line-end="251"><strong>endpoint:</strong> <code>/api/get_messages</code><br>
+                <strong>method:</strong> <code>GET</code><br>
+                <strong>need authentication</strong>: Yes<br>
+                <strong>description:</strong> Intoarce toate mesajele unei conversatii.<br>
+                <strong>request parameters:</strong></p>
+            <pre><code class="has-line-data" data-line-start="252" data-line-end="254">conversation_id=&lt;the id of the conversation&gt;
+</code></pre>
+            <p class="has-line-data" data-line-start="254" data-line-end="255"><strong>response body:</strong></p>
+            <pre><code class="has-line-data" data-line-start="256" data-line-end="268">{
+    &quot;response_type&quot; =&gt; &quot;SUCCESS&quot;,
+    &quot;message&quot;: &quot;Got messages with success&quot;,
+    &quot;response&quot; : [
+        {
+            &quot;sender&quot;: &quot;client&quot;/&quot;admin&quot;,
+            &quot;message&quot;: &lt;the message&gt;
+        },
+        ...
+    ]
+}
+</code></pre>
+            <h2 class="code-line" data-line-start=269 data-line-end=270>
+                <a id="Websocket_server_269"></a>Websocket server</h2>
+            <p class="has-line-data" data-line-start="271" data-line-end="273">Pentru a putea comunica real time cu clientii, chatul foloseste un <code>Websocket server</code>.<br> Acesta este folosit pentru a trimite mesaje clientilor/administratorilor si pentru a accepta/respinge clienti. Conectarea la server se face
+                folosing protocolul <code>wss</code> la endpointul <code>/wss</code>.</p>
+            <p class="has-line-data" data-line-start="274" data-line-end="275">Toate mesajele trebuie sa respecte urmatorul format:</p>
+            <p class="has-line-data" data-line-start="276" data-line-end="277">Clienti:</p>
+            <pre><code class="has-line-data" data-line-start="278" data-line-end="286">{
+    &quot;method&quot;: &lt;method to call&gt;,
+    &quot;token&quot;: &lt;the chat token&gt;,
+    &quot;server_id&quot;: &lt;the server id of the admin&gt;,
+    &lt;specific methid field&gt;: &lt;specific method value&gt;
+    ...
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="287" data-line-end="288">Administratori:</p>
+            <pre><code class="has-line-data" data-line-start="289" data-line-end="296">{
+    &quot;method&quot;: &lt;method to call&gt;,
+    &quot;token&quot;: &lt;the token from the PHPSESSID cookie&gt;,
+    &lt;specific methid field&gt;: &lt;specific method value&gt;,
+    ...
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="297" data-line-end="298">All the errors have the following format:</p>
+            <pre><code class="has-line-data" data-line-start="300" data-line-end="305">{
+    &quot;response_type&quot;: &quot;error&quot;,
+    &quot;message&quot;: &lt;error message&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="306" data-line-end="307">The following methods can be called:</p>
+
+            <hr>
+            <h3 class="code-line" data-line-start=307 data-line-end=308>
+                <a id="Start_waiting_for_admin_307"></a>Start waiting for admin</h3>
+            <p class="has-line-data" data-line-start="308" data-line-end="312"><strong>authority</strong>: Client<br>
+                <strong>description:</strong> Clientul este pus intr-o coada de asteptare pana cand un administrator<br> il accepta.<br>
+                <strong>request:</strong></p>
+            <pre><code class="has-line-data" data-line-start="313" data-line-end="320">{
+    &quot;method&quot;: &quot;Connect&quot;,
+    &quot;token&quot;: &lt;the chat token&gt;,
+    &quot;server_id&quot;: &lt;the server id of the admin&gt;,
+    &quot;name&quot;: &lt;the name of the client&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="320" data-line-end="321"><strong>response:</strong></p>
+            <pre><code class="has-line-data" data-line-start="322" data-line-end="326">{
+    &quot;response_type&quot;: &quot;success&quot;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="326" data-line-end="328"><em>note:</em> Dupa ce clientul este pus in coada de asteptare, in caz ca administratorul este<br> conectat, acesta va primi urmatoarea notificare:</p>
+            <pre><code class="has-line-data" data-line-start="329" data-line-end="333">{
+    &quot;response_type&quot;: &quot;client_start_waiting&quot;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=333 data-line-end=334>
+                <a id="Admin_connect_333"></a>Admin connect</h3>
+            <p class="has-line-data" data-line-start="334" data-line-end="337"><strong>authority</strong>: Admin<br>
+                <strong>description:</strong> Conectarea administratorului la server.<br>
+                <strong>request:</strong></p>
+            <pre><code class="has-line-data" data-line-start="338" data-line-end="343">{
+    &quot;method&quot;: &quot;AdminConnect&quot;,
+    &quot;token&quot;: &lt;the admin token&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="343" data-line-end="344"><strong>response:</strong></p>
+            <pre><code class="has-line-data" data-line-start="345" data-line-end="349">{
+    &quot;response_type&quot;: &quot;success&quot;,
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="349" data-line-end="350"><em>note:</em> Este prima metoda care trebuie apelata atunci cand un admin se conecteaza</p>
+
+            <hr>
+            <h3 class="code-line" data-line-start=351 data-line-end=352>
+                <a id="Accept_a_client_351"></a>Accept a client</h3>
+            <p class="has-line-data" data-line-start="352" data-line-end="355"><strong>authority</strong>: Admin<br>
+                <strong>description:</strong> Acceptarea unui client din coada de asteptare.<br>
+                <strong>request:</strong></p>
+            <pre><code class="has-line-data" data-line-start="356" data-line-end="361">{
+    &quot;method&quot;: &quot;AcceptClient&quot;,
+    &quot;token&quot;: &lt;the admin token&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="361" data-line-end="362"><strong>response:</strong></p>
+            <pre><code class="has-line-data" data-line-start="363" data-line-end="370">{
+    &quot;response_type&quot;: &quot;got_client&quot;,
+    &quot;client_id&quot;: &lt;the id of the accepted client&gt;,
+    &quot;client_name&quot;: &lt;the name of the accepted client&gt;,
+    &quot;conversation_id&quot; &lt;the id of the conversation&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="370" data-line-end="371"><em>note:</em> Dupa ce clientul este acceptat, acesta va primi o notificare de forma:</p>
+            <pre><code class="has-line-data" data-line-start="372" data-line-end="379">{
+    &quot;response_type&quot;: &quot;accepted&quot;,
+    &quot;name&quot;: &lt;the administrator name&gt;,
+    &quot;message&quot;: &quot;Connected&quot;,
+    &quot;photo&quot;: &lt;a link to the administrator profile picture&gt;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=380 data-line-end=381>
+                <a id="Client_send_message_380"></a>Client send message</h3>
+            <p class="has-line-data" data-line-start="381" data-line-end="384"><strong>authority</strong>: Client<br>
+                <strong>description:</strong> Clientul trimite un mesaj catre administrator<br>
+                <strong>request:</strong></p>
+            <pre><code class="has-line-data" data-line-start="385" data-line-end="392">{
+    &quot;method&quot;: &quot;ClientMessage&quot;,
+    &quot;token&quot;: &lt;the chat token&gt;,
+    &quot;server_id&quot;: &lt;the server id of the admin&gt;,
+    &quot;message&quot;: &lt;the message to send&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="392" data-line-end="393"><strong>response:</strong></p>
+            <pre><code class="has-line-data" data-line-start="394" data-line-end="398">{
+    &quot;response_type&quot;: &quot;success&quot;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="398" data-line-end="399"><em>note:</em> Dupa ce clientul trimite un mesaj, administratorul va primi o notificare de forma:</p>
+            <pre><code class="has-line-data" data-line-start="400" data-line-end="407">{
+    &quot;response_type&quot;: &quot;message&quot;,
+    &quot;client_id&quot;: &lt;the id of the client&gt;,
+    &quot;message&quot;: &lt;the client message&gt;,
+    &quot;conversation_id&quot;: &lt;the conversation id&gt;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=408 data-line-end=409>
+                <a id="Admin_send_message_408"></a>Admin send message</h3>
+            <p class="has-line-data" data-line-start="409" data-line-end="412"><strong>authority</strong>: Admin<br>
+                <strong>description:</strong> Administratorul trimite un mesaj catre un client<br>
+                <strong>request:</strong></p>
+            <pre><code class="has-line-data" data-line-start="413" data-line-end="420">{
+    &quot;method&quot;: &quot;ClientMessage&quot;,
+    &quot;token&quot;: &lt;the admin token&gt;,
+    &quot;client_id&quot;: &lt;the client id of the client to send the message&gt;,
+    &quot;message&quot;: &lt;the message to send&gt;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="420" data-line-end="421"><strong>response:</strong></p>
+            <pre><code class="has-line-data" data-line-start="422" data-line-end="426">{
+    &quot;response_type&quot;: &quot;success&quot;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="426" data-line-end="427"><em>note:</em> Dupa ce administratorul trimite un mesaj, clientul va primi o notificare de forma:</p>
+            <pre><code class="has-line-data" data-line-start="428" data-line-end="433">{
+    &quot;response_type&quot;: &quot;message&quot;,
+    &quot;message&quot;: &lt;the admin message&gt;
+}
+</code></pre>
+
+            <hr>
+            <h3 class="code-line" data-line-start=434 data-line-end=435>
+                <a id="Close_client_434"></a>Close client</h3>
+            <p class="has-line-data" data-line-start="435" data-line-end="438"><strong>authority</strong>: Admin<br>
+                <strong>description:</strong> Administratorul intrerupe conexiunea cu un client<br>
+                <strong>request:</strong></p>
+            <pre><code class="has-line-data" data-line-start="439" data-line-end="445">{
+    &quot;method&quot;: &quot;ClientMessage&quot;,
+    &quot;token&quot;: &lt;the admin token&gt;,
+    &quot;client_id&quot;: &lt;the client id of the client to send the message&gt;,
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="445" data-line-end="446"><strong>response:</strong></p>
+            <pre><code class="has-line-data" data-line-start="447" data-line-end="451">{
+    &quot;response_type&quot;: &quot;success&quot;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="451" data-line-end="453"><em>note:</em><br> Daca un administrator inchide conexiunea, clientul primeste o notificare de forma:</p>
+            <pre><code class="has-line-data" data-line-start="454" data-line-end="459">{
+    &quot;response_type&quot;: &quot;disconnected&quot;,
+    &quot;message&quot;: &quot;Admin disconnected&quot;
+}
+</code></pre>
+            <p class="has-line-data" data-line-start="459" data-line-end="460">Iar daca clientul inchide conexiunea, administratorul primeste o notificare de forma:</p>
+            <pre><code class="has-line-data" data-line-start="461" data-line-end="466">&quot;response_type&quot;: &quot;disconnected&quot;,
+&quot;message&quot;: &quot;Client disconnected&quot;,
+&quot;conversation_id&quot;: &lt;the conversation id&gt;,
+&quot;client_id&quot;: &lt;the client id&gt;
+</code></pre>
+            <p class="has-line-data" data-line-start="467" data-line-end="468">Iar in caz ca clientul nu este inca acceptat, administratorul va primi:</p>
+            <pre><code class="has-line-data" data-line-start="469" data-line-end="473">{
+    &quot;response_type&quot;: &quot;client_stop_waiting&quot;
+}
+</code></pre>
+            <hr>
         </section>
 </main>

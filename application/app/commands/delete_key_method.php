@@ -23,6 +23,6 @@ class Delete_Key_Method extends DeleteMethod {
 
         $key->delete();
 
-        return $this->send_success("", $response=["token" => $key]);
+        return $this->send_success("Key deleted with success");
     }
 }

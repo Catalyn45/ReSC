@@ -31,6 +31,6 @@ class Get_Messages_Method extends GetMethod {
             $response = $messages;
         }
 
-        $this->send_success("", $messages);
+        $this->send_success("Got messages with success", $messages);
     }
 }

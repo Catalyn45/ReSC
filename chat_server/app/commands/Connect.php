@@ -46,6 +46,10 @@ class Connect extends Command {
             }
         }
 
+        $client->send_response([
+            "response_type" => "success"
+        ]);
+
         $client->id = $db_client->id;
     }
 }

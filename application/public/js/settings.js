@@ -42,7 +42,7 @@ function get_saved_configuration(default_config = false) {
     fetch(url, { credentials: "same-origin" })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            console.log(JSON.stringify(data));
             let config = data.response;
             document.getElementById("chat_colors__header").style.background = `#${config.chatcolor_top}`;
             document.getElementById("chat_colors__content").style.background = `#${config.chatcolor_mid}`;
