@@ -30,6 +30,7 @@
 
                 <input type="submit" class="submit_button" id="register" value="Submit">
                 <button type="button" class="submit_button" onclick="location.href='/login'">Already have an account</button>
+                <div id="message_board"></div>
             </form>
         </div>
     </main>

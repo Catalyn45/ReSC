@@ -3,6 +3,16 @@
     color: white;
 }
 
+#message_board {
+    margin-top: 15px;
+    background-color: red;
+    padding: 10px;
+    opacity: 0.7;
+    border-radius: 5%;
+    display: none;
+    color: white;
+}
+
 #main_panel {
     display: inline-block;
     margin: 10em 0;

@@ -15,6 +15,7 @@
 
                 <input type="submit" value="Login" class="submit_button">
                 <button type="button" class="submit_button" onclick="location.href='/register'">I don't have an account</button>
+                <div id="message_board"></div>
             </form>
         </div>
     </main>

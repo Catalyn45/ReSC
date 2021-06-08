@@ -99,7 +99,11 @@ class Chat {
                 this.adminPhoto.src = `https://${this.host}/` + result.photo;
                 this.adminPhoto.style.display = "inline";
                 this.available.style.setProperty('--color', "green");
-                stranger_callback(`<i>${result.name} s-a conectat. Puteti incepe conversatia </i>`);
+                stranger_callback(`<i>${result.name} s-a conectat. Puteti incepe conversatia </i>`, true);
+            } else if (result.response_type == "disconnected") {
+                stranger_callback('<i>' + result.message + '</i>', true);
+                this.input.disabled = true;
+                this.sendMessage.disabled = true;
             } else if (result.response_type != "success") {
                 stranger_callback(result.message);
             }
@@ -119,7 +123,7 @@ class Chat {
             console.log(message);
 
             this.socket.send(JSON.stringify(message));
-            stranger_callback("Asteptati pana cand se conecteaza un administrator :danger:");
+            stranger_callback("<i>Asteptati pana cand se conecteaza un administrator</i>", true);
         }.bind(this);
 
         this.socket.onclose = function(e) {
@@ -157,8 +161,10 @@ class Chat {
         this.input.focus();
     }
 
-    strangerMsg(message) {
-        message = process_text(message);
+    strangerMsg(message, raw=false) {
+        if(!raw)
+            message = process_text(message);
+
         const backMessage = `
             <div class="chat__content__stranger">
                 <p>${message}</p>

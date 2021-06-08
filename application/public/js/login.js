@@ -27,10 +27,19 @@ function login() {
         }).then(response => response.json())
         .then(data => {
             console.log(data);
-            window.location.href = "/settings";
+
+            if (data.response_type == "ERROR") {
+                username_input.value = "";
+                password_input.value = "";
+                document.getElementById("message_board").style.display = "block";
+                document.getElementById("message_board").innerHTML = data.message;
+            } else {
+                document.location.href = "/settings";
+            }
         })
         .catch(error => {
             console.log(error);
-            window.location.href = "/login";
+            username_input.value = "";
+            password_input.value = "";
         });
 }

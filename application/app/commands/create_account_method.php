@@ -30,6 +30,10 @@ class Create_Account_Method extends PostMethod {
             return $this->send_error("Username or email already exists.");
         }
 
+        if(strlen($params["password"]) <= 5) {
+            return $this->send_error("The password need to be bigger than 5 characters.");
+        }
+
         $token = md5(uniqid(rand(), true));
 
         $default_config = Configuration::find(1);
@@ -74,6 +78,6 @@ class Create_Account_Method extends PostMethod {
             "server_id" => $new_config->id
         ]);
         
-        $this->send_success("Account created successfuly");
+        $this->send_success("Account created successfuly, check de email for the confirmation link");
     }
 }

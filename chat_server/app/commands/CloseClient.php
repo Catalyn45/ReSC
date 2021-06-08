@@ -19,7 +19,7 @@ class CloseClient extends Command {
 
     public function run($msg, $client, $clients) {
         $this->logger->log_info("Command called");
-        $sender = \Client::find($client->id);
+        $sender = \Client::find($msg["client_id"]);
 
         if(is_null($sender)) {
             $this->logger->log_info("Can't find the client");

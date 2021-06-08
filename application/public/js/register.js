@@ -24,19 +24,32 @@ function register() {
         host: host.value
     };
 
-    var xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            /*if (this.status == 200)
-                window.location.href = "/login";
-            else
-                window.location.href = "/register"*/
-            console.log(xhr.response);
-        }
-    };
+    fetch("/api/create_account", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+        })
+        .then(response => response.json())
+        .then(data => {
+            username_input.value = "";
+            password_input.value = "";
+            r_password_input.value = "";
+            email_input.value = "";
+            host.value = "";
 
-    xhr.open("POST", "/api/create_account", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(credentials));
+            if (data.response_type == "ERROR") {
+                document.getElementById("message_board").style.background = "red";
+            } else {
+                document.getElementById("message_board").style.background = "green";
+            }
+
+            document.getElementById("message_board").style.display = "block";
+            document.getElementById("message_board").innerHTML = data.message;
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
