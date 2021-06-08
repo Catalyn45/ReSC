@@ -10,7 +10,7 @@ class Api {
         //}
         
         if(!class_exists($class_name))
-             return ApiMethod::send_error("Endpoint does not exists: " . $class_name);
+            return ApiMethod::send_error("Endpoint does not exists: " . $class_name);
 
         $class = new $class_name;
 

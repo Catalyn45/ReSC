@@ -32,19 +32,22 @@ if(isset($data['css'])) {
     <?php
     require_once __DIR__ . '/' . $data['view'] . '.php';
     ?>
-
+    <br>
+    <br>
+    <br>
     <footer>
         <ul>
-            <li> ceva</li>
-            <li>buna</li>
+            <li><u>Servicii</u></li>
+            <li>chat support</li>
         </ul>
         <ul>
-            <li>test1 aaaaa aaaa</li>
-            <li>alceva</li>
+            <li><u>Autori</u></li>
+            <li>Ancutei Catalin</li>
+            <li>Condurache Andreea</li>
         </ul>
         <ul>
-            <li>cevaaa aaaaaa aaaaaaa aaaaaaa aaaaaaa aaaaaa aaaaaaaa aaa aaaa</li>
-            <li>alceva</li>
+            <li><u>Contact</u></li>
+            <li>ancutei.catalin@gmail.com</li>
         </ul>
     </footer>
     <script src="/js/sha.js"></script>

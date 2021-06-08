@@ -24,6 +24,7 @@
 }
 
 .main_panel__text {
+    margin-top: 0.5em;
     color: white;
     font-size: 20px;
 }
@@ -31,6 +32,10 @@
 #main_panel ul {
     text-align: center;
     display: inline-block;
+}
+
+#main_panel ul li {
+    text-align: left;
 }
 
 .submit_button {
