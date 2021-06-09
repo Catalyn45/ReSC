@@ -61,7 +61,7 @@ class Create_Account_Method extends PostMethod {
         ]);
 
         $subject = 'ReSC verifiaction mail';
-        $body = "This is the verification mail for your account. Click <a href=\"{$_SERVER['HTTP_HOST']}/confirm/index/{$admin->id}/{$token}\" target=\"_blank\">here</a> to confirm your email address.";
+        $body = "This is the verification mail for your account. Click <a href=\"{$_SERVER['HTTP_HOST']}/confirm/index/{$admin->id}/{$token}\" target=\"_blank\">here</a> or access: <u>https://{$_SERVER['HTTP_HOST']}/confirm/index/{$admin->id}/{$token}</u> to confirm your email address.";
 
         $result = send_mail($params["email"], $subject, $body);
         if(!$result) {

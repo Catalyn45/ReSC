@@ -53,7 +53,7 @@ password: 1234
 ```
 You can try out the chat by opening 2 tabs. In one tab you should connect with the previous credentials and go to the `chat` section, and in the second tab you should click the `try a demo` button. In the logged tab, you can click `get a client` and you can start a conversation with yourself.
 
-If you want to use the application like an endpoint, you can call the `api` functions and connect to the `wss` server with a separate app and connect it to your own `CRM` ( you can find more details, along with the documentation in the `documentation.html` file from the root of the project or click [here](https://catalyn45.github.io/ReSC/documentation).
+If you want to use the application like an endpoint, you can call the `api` functions and connect to the `wss` server with a separate app and connect it to your own `CRM` ( you can find more details, along with the documentation in the `documentation.html` file from the root of the project or click [here](https://catalyn45.github.io/ReSC/documentation) or you can watch the presentation video [here](https://www.youtube.com/watch?v=vDZRvER8zaI)).
 
 ## Contributors
 * Ancutei Catalin-Iulian
