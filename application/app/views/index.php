@@ -15,6 +15,13 @@
             <li>Securitate</li>
         </ul>
     </div>
-    <button class="submit_button" id="try_demo" onclick="load_chat()">Try a demo</button>
+    <!-- <form action="index.php" method="POST">
+    <p>Introduce your name</p>
+    <input type="text" name="name" class="form-control" autocomplete="off"/>
+    <br>
+    <input type="submit" name="submit" class="btn btn-primary"  value="OK"/>
+    </form> -->
+    <!-- <button class="submit_button" id="introduce_name" onclick="load_chat()">Introduce your name</button> -->
+    <!-- <button class="submit_button" id="try_demo" onclick="load_chat()">Try a demo</button> -->
 </main>
-<script src="/chatloader?server_id=3"></script>
+<script src="/autoloader?server_id=3"></script>

@@ -21,12 +21,14 @@ class Change_Profile_Picture_Method extends PostMethod {
         $data = base64_decode($data);
         list(,$type) = explode('/', $type);
         
-        file_put_contents('/home/catalin/repos/ReSC/front_end/application/public/resources/profile_pictures/' . $_SESSION["id"] . $_SESSION["user"] . "." . $type, $data);
-
         $admin = Admin::find($_SESSION["id"]);
 
         if($admin->photo != "resources/profile_photos/default.png")
             unlink($admin->photo);
+            
+        file_put_contents('application/public/resources/profile_pictures/' . $_SESSION["id"] . $_SESSION["user"] . "." . $type, $data);
+
+        
 
         $admin->photo = "/resources/profile_pictures/" . $_SESSION["id"] . $_SESSION["user"] . "." . $type;
         $admin->save();

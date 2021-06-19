@@ -6,7 +6,7 @@ $capsule = new Capsule();
 
 $url = getenv("DATABASE_URL");
 if($url == false) {
-    $url = "postgres://postgres:admin@192.168.1.150:5432/Resc";
+    $url = "postgres://postgres:admin@localhost:5432/Resc";
 }
 
 $DATABASE_URL = parse_url($url);

@@ -208,43 +208,22 @@ class Chat {
     }
 }
 
-var htmlRaw = `
-<div id="chat">
-        <div id="chat__menubar">
-            <div id="chat__menubar__person">
-                <p class="menubar__element" id="available"></p>
-                <img class="menubar__element" alt="Person" srcset="" id="admin_photo">
-                <p class="menubar__element" id="admin_name"></p>
-            </div>
 
-            <div id="chat__menubar__buttons">
-                <button id="hide_button" onclick="chat.hideContent()">➖</button>
-                <button id="close_button" onclick="chat.closeCallback()">❌</button>
-            </div>
-        </div>
-
-        <div id="chat__content">
-        </div>
-
-        <div id="chat__inputbar">
-            <form id="chat__form" autocomplete="off">
-                <input type="textarea" name="message" id="input_message" placeholder="Type a message...">
-                <input type="submit" id="send_message" value="send">
-            </form>
-        </div>
-    </div>
-`;
-<?php
-    echo 'document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" type="text/css" href="https://${host}/chatloadercss?server_id=' . $_GET["server_id"] . '"/>`);';
-?>
-
-document.body.insertAdjacentHTML("beforeend", htmlRaw);
 
 <?php
     echo 'var '. $data->object_name . '= new ' . $data->class_name . '();';
     echo $data->object_name . '.show();';
-    echo $data->object_name . '.startConnection();';
 ?>
+function addName(){
+    let name=document.getElementById("add_name").value;
+    document.getElementById("button_add").disabled=true;
+    document.getElementById("add_name").disabled=true;
+    <?php  
+    echo $data->object_name . '.setName(name);';
+        echo $data->object_name . '.startConnection();';
+        ?>
+    
+}
 
 chat.onChatClose = function() {
     this.stopConnection();

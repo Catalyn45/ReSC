@@ -48,6 +48,8 @@ if(isset($data['css'])) {
         <ul>
             <li><u>Contact</u></li>
             <li>ancutei.catalin@gmail.com</li>
+            <li>andreeaemacondurache@gmail.com</li>
+
         </ul>
     </footer>
     <script src="/js/sha.js"></script>
